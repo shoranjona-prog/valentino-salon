@@ -4,52 +4,65 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Valentino Salon, Serampore — Hair, Skin, Makeup &amp; Wellness</title>
-<meta name="description" content="Valentino Salon (Head Turners), Serampore. 241, G.T. Road, Opp. New Kolkata / Triveni Mall, Mahesh, Serampore, West Bengal 712202. Open 10 AM – 8 PM daily. Book on WhatsApp.">
+<meta name="description" content="Valentino Salon (Head Turners), Serampore. 241, G.T. Road, Opp. New Kolkata, Mahesh, Serampore, West Bengal 712202. Open 10 AM – 8 PM daily. Book on WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0d0c0a;--bg2:#15130f;--card:#1b1813;--gold:#c9a24b;--gold2:#e8cf8a;--ink:#f5f0e4;--mut:#b8b0a0;--line:#2e2820;--wa:#25d366}
-*{box-sizing:border-box}html{scroll-behavior:auto}
+*{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.6}
 a{color:inherit}img{max-width:100%}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-/* Header */
-header{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .25s,box-shadow .25s,backdrop-filter .25s}
-header.scrolled{background:rgba(13,12,10,.86);backdrop-filter:blur(12px);box-shadow:0 8px 30px rgba(0,0,0,.45)}
+/* Header: logo left, 4 links centre, Book Now right. No social icons in header. */
+header{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(13,12,10,.86);backdrop-filter:blur(12px);box-shadow:0 8px 30px rgba(0,0,0,.45)}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0}
-.brand{font-family:"Cormorant Garamond",serif;font-size:26px;letter-spacing:.14em;font-weight:700}
+.brand{font-family:"Cormorant Garamond",serif;font-size:26px;letter-spacing:.14em;font-weight:700;text-decoration:none}
 .brand small{display:block;font-family:Inter,sans-serif;font-size:10px;letter-spacing:.28em;color:var(--gold)}
 .navlinks{display:flex;gap:18px;font-size:14px;color:var(--mut)}
-.navlinks a{text-decoration:none;padding:6px 2px;border-bottom:2px solid transparent}
-.navlinks a.active{color:var(--gold2);border-color:var(--gold)}
+.navlinks a{text-decoration:none;padding:6px 2px}
+.navlinks a:hover{color:var(--gold2)}
 .btn{display:inline-block;background:var(--gold);color:#171310;text-decoration:none;font-weight:700;padding:12px 20px;border-radius:999px;border:0;cursor:pointer}
 .btn.ghost{background:transparent;color:var(--gold2);border:1px solid var(--gold)}
 @media(max-width:760px){.navlinks{display:none}.brand{font-size:22px}}
-/* Hero */
-.hero{padding:148px 0 64px;background:radial-gradient(900px 420px at 85% 10%,rgba(201,162,75,.22),transparent 60%),linear-gradient(180deg,#171410,#0d0c0a 70%)}
+/* Hero: Ken Burns slow zoom + staggered entrance (0.2s gaps) */
+.hero{padding:148px 0 64px;background:linear-gradient(180deg,#171410,#0d0c0a 70%)}
 .eyebrow{color:var(--gold);letter-spacing:.24em;font-size:12px;font-weight:700;text-transform:uppercase}
 h1{font-family:"Cormorant Garamond",serif;font-size:clamp(42px,8vw,76px);line-height:1.02;margin:14px 0 14px;font-weight:600}
 h1 em{color:var(--gold2);font-style:normal}
 .lede{color:var(--mut);max-width:620px;font-size:18px}
-.hero-art{margin-top:36px;height:280px;border:1px solid var(--line);border-radius:20px;overflow:hidden;position:relative;background:linear-gradient(135deg,#2a2114,#171410 45%,#3a2c15);display:flex;align-items:flex-end}
-.hero-art:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 22% 30%,rgba(232,207,138,.35),transparent 40%),radial-gradient(circle at 78% 70%,rgba(201,162,75,.28),transparent 45%)}
-.hero-art span{position:relative;padding:22px;font-family:"Cormorant Garamond",serif;font-size:30px}
-.hero-art small{display:block;font-family:Inter,sans-serif;font-size:13px;color:var(--mut);letter-spacing:.12em;text-transform:uppercase}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.08)}}
+.hero-el{opacity:0;animation:fadeUp .7s ease forwards}
+.hero-el:nth-child(1){animation-delay:0s}.hero-el:nth-child(2){animation-delay:.2s}.hero-el:nth-child(3){animation-delay:.4s}.hero-el:nth-child(4){animation-delay:.6s}.hero-el:nth-child(5){animation-delay:.8s}
+.hero-photo{margin-top:36px;border:1px solid var(--line);border-radius:20px;overflow:hidden;position:relative}
+.hero-photo img{width:100%;height:360px;object-fit:cover;display:block;animation:kenburns 20s ease-in-out infinite alternate}
+@media(max-width:640px){.hero-photo img{height:240px}}
+.hero-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px 22px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.75));font-family:"Cormorant Garamond",serif;font-size:28px}
+.hero-photo figcaption small{display:block;font-family:Inter,sans-serif;font-size:13px;color:var(--mut);letter-spacing:.12em;text-transform:uppercase}
 section{padding:64px 0}h2{font-family:"Cormorant Garamond",serif;font-size:clamp(32px,5vw,48px);line-height:1.1;margin:0 0 12px}
 .sub{color:var(--mut);max-width:680px;margin:0 0 28px}
 .rule{width:56px;height:3px;background:var(--gold);margin:0 0 18px}
-/* Trust strip */
-.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;display:flex;gap:28px;flex-wrap:wrap;color:var(--mut);font-size:14px}
-.strip b{color:var(--ink)}
-/* Cards / services */
+/* About bullets */
+.bullets{display:flex;gap:12px;flex-wrap:wrap;padding:0;margin:0;list-style:none}
+.bullets li{border:1px solid var(--line);border-radius:999px;padding:10px 16px;color:var(--mut);font-size:15px}
+.bullets li b{color:var(--ink)}
+/* Services: Bento Grid + hover scale + reveal price/details */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 @media(max-width:820px){.grid{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.grid{grid-template-columns:1fr}}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+@media(min-width:820px){.grid article:nth-child(8){grid-column:span 2}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;transition:transform .3s ease,box-shadow .3s ease}
 .card h3{font-family:"Cormorant Garamond",serif;font-size:26px;margin:6px 0 8px}
 .card p{color:var(--mut);margin:0;font-size:15px}
 .chip{display:inline-block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border:1px solid #3a2f1d;padding:4px 9px;border-radius:999px}
-/* Gallery — code-built visuals only, no photos */
+.price{font-size:20px;font-weight:700;color:var(--gold2);display:block;margin-top:10px}
+.price-note{background:#171410;border:1px solid var(--gold);border-radius:12px;padding:14px 18px;color:var(--ink);font-weight:600}
+@media(hover:hover){
+  .card:hover{transform:scale(1.03);box-shadow:0 14px 30px rgba(0,0,0,.35)}
+  .card .detail{opacity:0;max-height:0;overflow:hidden;transition:opacity .3s ease,max-height .3s ease}
+  .card:hover .detail{opacity:1;max-height:120px}
+}
+/* Gallery */
 .pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
 .pill{background:transparent;color:var(--mut);border:1px solid var(--line);padding:9px 16px;border-radius:999px;cursor:pointer;font-weight:600}
 .pill.active{background:var(--gold);color:#171310;border-color:var(--gold)}
@@ -57,17 +70,22 @@ section{padding:64px 0}h2{font-family:"Cormorant Garamond",serif;font-size:clamp
 @media(max-width:820px){.gal{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.gal{grid-template-columns:1fr}}
 .tile{border:1px solid var(--line);border-radius:16px;aspect-ratio:1;position:relative;overflow:hidden;cursor:pointer;text-align:left;color:var(--ink);padding:0}
-.tile span{position:absolute;left:16px;bottom:14px;right:16px;font-weight:700}
+.tile img{width:100%;height:100%;object-fit:cover;display:block;animation:kenburns 24s ease-in-out infinite alternate}
+.tile span{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.7));padding:18px 16px 14px;font-weight:700}
 .tile small{display:block;color:rgba(245,240,228,.8);font-weight:400;font-size:13px}
-.tile:before{content:"";position:absolute;inset:0;opacity:.9}
-.t1:before{background:linear-gradient(150deg,#5a421c,#171410 65%)}
-.t2:before{background:linear-gradient(150deg,#3d2a20,#171410 65%)}
-.t3:before{background:linear-gradient(150deg,#232b22,#171410 65%)}
-.t4:before{background:linear-gradient(150deg,#4a3520,#241c12 65%)}
-.t5:before{background:linear-gradient(150deg,#2e2a22,#171410 65%)}
-.t6:before{background:linear-gradient(150deg,#6b5222,#171410 65%)}
-.tile i{position:absolute;font-style:normal;font-family:"Cormorant Garamond",serif;font-size:64px;right:18px;top:8px;color:rgba(232,207,138,.55)}
 .tile.hidden{display:none}
+/* Before / After slider (draggable) */
+.ba{position:relative;border:1px solid var(--line);border-radius:20px;overflow:hidden;max-width:720px;margin:0 auto;touch-action:none}
+.ba img{width:100%;height:420px;object-fit:cover;display:block}
+@media(max-width:640px){.ba img{height:280px}}
+.ba-top{position:absolute;inset:0;overflow:hidden}
+.ba-top img{width:720px;max-width:none}
+.ba-handle{position:absolute;top:0;bottom:0;width:3px;background:var(--gold2);left:50%;transform:translateX(-50%);cursor:ew-resize}
+.ba-handle:after{content:"↔";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--gold);color:#171310;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
+.ba-label{position:absolute;top:14px;background:rgba(0,0,0,.65);padding:6px 12px;border-radius:999px;font-size:13px;font-weight:700}
+.ba-label.l{left:14px}.ba-label.r{right:14px}
+.ba input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.demolabel{display:inline-block;background:var(--gold);color:#171310;font-weight:700;font-size:12px;letter-spacing:.12em;padding:4px 10px;border-radius:999px}
 /* Lightbox */
 .lb{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
 .lb.open{display:flex}
@@ -75,7 +93,8 @@ section{padding:64px 0}h2{font-family:"Cormorant Garamond",serif;font-size:clamp
 .lb-box h3{font-family:"Cormorant Garamond",serif;font-size:32px;margin:8px 0}
 .lb-box p{color:var(--mut)}
 .lb button{background:var(--gold);border:0;border-radius:999px;padding:10px 18px;font-weight:700;cursor:pointer;margin:6px}
-/* Reviews — generic wording only, no names, no ratings */
+.lb-box img{width:100%;max-height:60vh;object-fit:contain;border-radius:12px;display:block;margin:0 auto 14px}
+/* Testimonials: placeholder slots only, no invented reviews */
 .quotes{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:700px){.quotes{grid-template-columns:1fr}}
 .quote{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
@@ -100,126 +119,75 @@ form .full{grid-column:1/-1}
 .dash th,.dash td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
 .dash th{color:var(--gold2);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
 .dashwrap{overflow-x:auto}
-.demolabel{display:inline-block;background:var(--gold);color:#171310;font-weight:700;font-size:12px;letter-spacing:.12em;padding:4px 10px;border-radius:999px}
 .banner{background:linear-gradient(135deg,#2a2114,#171410);border:1px solid var(--line);border-radius:20px;padding:32px;text-align:center}
-footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mut);font-size:14px}
-footer a{color:var(--gold2)}
-.wa{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:var(--wa);color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;text-decoration:none;z-index:90;box-shadow:0 10px 30px rgba(0,0,0,.5)}
-.reveal{opacity:0;transform:translateY(24px)}
-.card{transition:transform .25s ease,box-shadow .25s ease}
-.card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.35)}
-.price{font-size:20px;font-weight:700;color:var(--gold2);display:block;margin-top:10px}
-.price-note{background:#171410;border:1px solid var(--gold);border-radius:12px;padding:14px 18px;color:var(--ink);font-weight:600}
-.hero-photo{margin-top:36px;border:1px solid var(--line);border-radius:20px;overflow:hidden;position:relative}
-.hero-photo img{width:100%;height:360px;object-fit:cover;display:block}
-@media(max-width:640px){.hero-photo img{height:240px}}
-.hero-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px 22px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.75));font-family:"Cormorant Garamond",serif;font-size:28px}
-.hero-photo figcaption small{display:block;font-family:Inter,sans-serif;font-size:13px;color:var(--mut);letter-spacing:.12em;text-transform:uppercase}
-.tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
-.tile:hover img{transform:scale(1.04)}
-.tile span{background:linear-gradient(180deg,transparent,rgba(0,0,0,.7));padding:18px 16px 14px;left:0;right:0;bottom:0}
 .mapwrap{margin-top:20px;border:1px solid var(--line);border-radius:20px;overflow:hidden}
 .mapwrap iframe{width:100%;height:340px;border:0;display:block}
 @media(max-width:640px){.mapwrap iframe{height:280px}}
-.lb-box img{width:100%;max-height:60vh;object-fit:contain;border-radius:12px;display:block;margin:0 auto 14px}
-
-/* ANIM: salon-fit subset only (see notes) */
-/* 2 Kinetic typography masks */
-.mask{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em}
-.k-word{display:inline-block;will-change:transform}
-/* 6 Bento elastic hover (services grid) */
-.bento .card{transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .45s ease}
-.bento .card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 18px 34px rgba(0,0,0,.4)}
-@media(min-width:820px){.bento article:nth-child(8){grid-column:span 2}}
-/* 7 Marquee (transform only, mobile-safe) + native horizontal swipe row */
-.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0}
-.marquee-track{display:flex;width:max-content;animation:marquee 32s linear infinite}
-.marquee:hover .marquee-track{animation-play-state:paused}
-.marquee-track img{width:180px;height:180px;object-fit:cover;border-radius:14px;border:1px solid var(--line);display:block;margin-right:14px}
-@keyframes marquee{to{transform:translateX(-50%)}}
-.hrow{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px}
-.hrow figure{flex:0 0 240px;margin:0;scroll-snap-align:start;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card)}
-.hrow img{width:100%;height:200px;object-fit:cover;display:block}
-.hrow figcaption{padding:12px 14px;font-weight:600}
-/* 11 SVG gold guide line */
-.guide-wrap{max-width:1080px;margin:0 auto;padding:6px 20px 0}
-.guide-wrap svg{width:100%;height:110px;display:block}
-#guidePath{fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;filter:drop-shadow(0 0 6px rgba(201,162,75,.7))}
-/* 10 Glow path under headings */
-.glowline{display:block;width:56px;height:3px;margin-top:12px;background:linear-gradient(90deg,var(--gold),var(--gold2));box-shadow:0 0 12px rgba(201,162,75,.85);transform-origin:left center}
-/* 4 Shutter section reveal */
-.shutter-wrap{position:relative;overflow:hidden}
-.shutter-panel{position:absolute;inset:0;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:2;pointer-events:none}
-/* 14 Hero logo morph (inline badge only, never blocks content) */
-.morph-badge{width:56px;height:56px;background:var(--gold);color:#171310;display:flex;align-items:center;justify-content:center;font-family:"Cormorant Garamond",serif;font-size:32px;font-weight:700;animation:morph-shape 1.4s ease forwards}
-@keyframes morph-shape{0%{clip-path:circle(50% at 50% 50%)}50%{clip-path:polygon(50% 0,100% 100%,0 100%)}100%{clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}}
-/* 15 Sticky stacking — short cards only, never the booking form */
-.stack-card{position:sticky;top:84px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:16px}
-.stack-card h3{font-family:"Cormorant Garamond",serif;font-size:28px;margin:0 0 8px}
-.stack-card p{color:var(--mut);margin:0}
-/* 1 Scroll-Driven 3D Canvas — desktop only, static fallback on mobile */
-.craft3d{display:grid;grid-template-columns:1fr 1.15fr;gap:28px;align-items:center}
-@media(max-width:900px){.craft3d{grid-template-columns:1fr}}
-.craft3d-stage{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:radial-gradient(500px 300px at 50% 40%,rgba(201,162,75,.18),transparent 60%),#14110d;min-height:420px;position:relative}
-#craft3d-canvas{display:none;width:100%;height:420px}
-#craft3d-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;height:420px;padding:24px;text-align:center}
-#craft3d-fallback .fb-scissors{font-size:88px;color:var(--gold);line-height:1}
-#craft3d-fallback p{color:var(--mut);margin:0;max-width:320px}
-.craft3d-live #craft3d-canvas{display:block}
-.craft3d-live #craft3d-fallback{display:none}
-.craft3d-note{font-size:13px;color:var(--mut)}
-/* 12 Magnetic CTA (transform only; JS gates to desktop) */
-.magnetic{will-change:transform}
-@media(max-width:1023px){.magnetic{will-change:auto}}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}*{scroll-behavior:auto!important}.marquee-track{animation:none}.morph-badge{animation:none}.glowline{transform:none}}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mut);font-size:14px}
+footer a{color:var(--gold2)}
+.wa{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:var(--wa);color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;text-decoration:none;z-index:90;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+@media(prefers-reduced-motion:reduce){.hero-el{opacity:1;animation:none}.hero-photo img,.tile img{animation:none}}
 </style>
 </head>
 <body>
-<header id="hdr"><div class="wrap nav">
-<div class="brand">VALENTINO<small>SALON &middot; SERAMPORE</small></div>
+<header><div class="wrap nav">
+<a class="brand" href="#home">VALENTINO<small>SALON &middot; SERAMPORE</small></a>
 <nav class="navlinks" aria-label="Sections">
-<a href="#services" data-spy="services">Services</a><a href="#gallery" data-spy="gallery">Gallery</a><a href="#reviews" data-spy="reviews">Reviews</a><a href="#visit" data-spy="visit">Visit</a><a href="#book" data-spy="book">Book</a>
+<a href="#home">Home</a><a href="#services">Services</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a>
 </nav>
 <a class="btn magnetic" href="#book">Book Now</a>
 </div></header>
 
 <main>
-<section class="hero"><div class="wrap">
-<div class="morph-badge reveal hero-el" aria-hidden="true">V</div>
-<p class="eyebrow reveal hero-el">Head Turners &middot; Mahesh, Serampore</p>
-<h1 class="reveal hero-el"><span class="mask"><span class="k-word">Good</span></span> <span class="mask"><span class="k-word">hair,</span></span><br><span class="mask"><span class="k-word">calm</span></span> <span class="mask"><span class="k-word">skin,</span></span><br><span class="mask"><span class="k-word" style="color:var(--gold2)">done</span></span> <span class="mask"><span class="k-word" style="color:var(--gold2)">beautifully.</span></span></h1>
-<p class="lede reveal hero-el">Valentino Salon in Serampore — hair, skin, makeup and wellness, in a calm, premium space on G.T. Road.</p>
-<p class="reveal hero-el" style="background:var(--card);border:1px solid var(--gold);border-radius:14px;padding:14px 18px;max-width:680px"><b style="color:var(--gold2)">Valentino Salon, Serampore</b><br>241, G.T. Road, Opp. New Kolkata, Mahesh, Serampore 712202 &middot; Open 10 AM&ndash;8 PM &middot; Call / WhatsApp: 86979 74717<br><small style="color:var(--mut)">This is the Serampore salon on G.T. Road, Mahesh — not a Mumbai or Ballygunge branch.</small></p>
-<p class="reveal hero-el"><a class="btn magnetic" href="#book">Book on WhatsApp</a></p>
-<figure class="hero-photo reveal hero-el"><img src="photos/hero-interior.jpg" alt="Valentino Salon interior in Serampore, with illuminated mirrors and styling chairs" loading="eager"><figcaption>Valentino Salon<small>241, G.T. Road &middot; Opp. New Kolkata / Triveni Mall</small></figcaption></figure>
+<section class="hero" id="home"><div class="wrap">
+<p class="eyebrow hero-el">Head Turners &middot; Mahesh, Serampore</p>
+<h1 class="hero-el">Good hair, calm skin, <em>done beautifully.</em></h1>
+<p class="lede hero-el">Valentino Salon in Serampore — hair, skin, makeup and wellness, in a calm, premium space on G.T. Road.</p>
+<p class="hero-el"><a class="btn magnetic" href="#book">Book an Appointment</a></p>
+<figure class="hero-photo hero-el"><img src="photos/hero-interior.jpg" alt="Valentino Salon interior in Serampore, with illuminated mirrors and styling chairs" loading="eager"><figcaption>Valentino Salon<small>241, G.T. Road &middot; Opp. New Kolkata / Triveni Mall</small></figcaption></figure>
 </div></section>
 
-<div class="wrap strip reveal"><span><b>Open daily</b> &middot; 10 AM &ndash; 8 PM</span><span><b>WhatsApp booking</b> &middot; 86979 74717</span><span><b>Also on WhatsApp</b> &middot; 91636 68888</span><span><b>Instagram</b> &middot; @valentinosalon.in</span></div>
+<section id="about"><div class="wrap">
+<div class="rule"></div><h2>Our Story</h2>
+<p class="sub">A calm, premium salon on G.T. Road — careful work, in a space that feels unhurried.</p>
+<ul class="bullets">
+<li><b>Hair</b> — cuts, colour, keratin</li>
+<li><b>Skin</b> — facials, cleanup</li>
+<li><b>Makeup</b> — bridal, occasion</li>
+<li><b>Wellness</b> — spa, grooming</li>
+</ul>
+</div></section>
 
-<div class="guide-wrap" aria-hidden="true"><svg viewBox="0 0 100 120" preserveAspectRatio="none" role="img"><path id="guidePath" d="M50 2 C 20 30, 80 55, 50 80 S 50 118, 50 118" /></svg></div>
 <section id="services"><div class="wrap">
-<div class="rule reveal"></div><h2 class="reveal">Services</h2>
-<p class="sub reveal">Prices below are indicative starting prices (see the note above) — please confirm on WhatsApp before your visit. Categories without a price are marked “Ask on WhatsApp”.</p>
-<p class="price-note reveal">Indicative starting prices based on typical Kolkata salon rates; final pricing to be confirmed by the salon. These are not salon-confirmed prices — please confirm on WhatsApp before your visit.</p>
-<div class="grid bento">
-<article class="card reveal"><span class="chip">Hair</span><h3>Haircut — Men</h3><p>Everyday cuts and styled finishes.</p><span class="price">from ₹199</span></article>
-<article class="card reveal"><span class="chip">Hair</span><h3>Haircut — Women</h3><p>Cuts and styling, shaped around your hair and routine.</p><span class="price">from ₹499</span></article>
-<article class="card reveal"><span class="chip">Hair</span><h3>Hair Spa</h3><p>Spa care for hair and scalp.</p><span class="price">from ₹799</span></article>
-<article class="card reveal"><span class="chip">Hair</span><h3>Global Hair Colour</h3><p>Full-head colour for a fresh, natural-looking change.</p><span class="price">from ₹1,999</span></article>
-<article class="card reveal"><span class="chip">Hair</span><h3>Keratin Treatment</h3><p>Smoother, easier-to-manage hair for frizz and texture.</p><span class="price">from ₹2,999</span></article>
-<article class="card reveal"><span class="chip">Skin</span><h3>Facial / Cleanup</h3><p>Facials and cleanup for a cleaner, fresher glow.</p><span class="price">from ₹499</span></article>
-<article class="card reveal"><span class="chip">Nails</span><h3>Manicure / Pedicure</h3><p>Care for hands and feet.</p><span class="price">from ₹599</span></article>
-<article class="card reveal"><span class="chip">Makeup</span><h3>Bridal Package</h3><p>Bridal makeup and occasion styling — confirm details on WhatsApp.</p><span class="price">from ₹9,999</span></article>
-<article class="card reveal"><span class="chip">Hair</span><h3>Beard Grooming</h3><p>Beard shaping and grooming.</p><span class="price">from ₹149</span></article>
-<article class="card reveal"><span class="chip">Spa</span><h3>Spa</h3><p>Spa and relaxation services — ask on WhatsApp what is available on your date.</p><span class="price">Ask on WhatsApp</span></article>
-<article class="card reveal"><span class="chip">Mehendi</span><h3>Mehendi</h3><p>Mehendi for occasions and celebrations — ask on WhatsApp for designs and availability.</p><span class="price">Ask on WhatsApp</span></article>
-<article class="card reveal"><span class="chip">Nails</span><h3>Nail Art</h3><p>Nail art and nail care, in styles you can discuss before your visit.</p><span class="price">Ask on WhatsApp</span></article>
-<article class="card reveal"><span class="chip">Skin</span><h3>Skin &amp; Face Care</h3><p>Face and skin care — confirm the right option on WhatsApp first.</p><span class="price">Ask on WhatsApp</span></article>
+<div class="rule"></div><h2>Our Services</h2>
+<p class="price-note">Indicative starting prices based on typical Kolkata salon rates; final pricing to be confirmed by the salon. These are not salon-confirmed prices — please confirm on WhatsApp before your visit.</p>
+<div class="grid">
+<article class="card"><span class="chip">Hair</span><h3>Haircut — Men</h3><p>Everyday cuts and styled finishes.</p><span class="price">from ₹199</span><p class="detail">Confirm your preferred style on WhatsApp before your visit.</p></article>
+<article class="card"><span class="chip">Hair</span><h3>Haircut — Women</h3><p>Cuts and styling, shaped around your hair and routine.</p><span class="price">from ₹499</span><p class="detail">Confirm length and finish on WhatsApp before your visit.</p></article>
+<article class="card"><span class="chip">Hair</span><h3>Hair Spa</h3><p>Spa care for hair and scalp.</p><span class="price">from ₹799</span><p class="detail">Ask on WhatsApp which spa treatment suits your hair.</p></article>
+<article class="card"><span class="chip">Hair</span><h3>Global Hair Colour</h3><p>Full-head colour for a fresh, natural-looking change.</p><span class="price">from ₹1,999</span><p class="detail">Shade and timing to be confirmed on WhatsApp.</p></article>
+<article class="card"><span class="chip">Hair</span><h3>Keratin Treatment</h3><p>Smoother, easier-to-manage hair for frizz and texture.</p><span class="price">from ₹2,999</span><p class="detail">Confirm hair length and treatment type on WhatsApp.</p></article>
+<article class="card"><span class="chip">Skin</span><h3>Facial / Cleanup</h3><p>Facials and cleanup for a cleaner, fresher glow.</p><span class="price">from ₹499</span><p class="detail">Ask on WhatsApp which facial suits your skin.</p></article>
+<article class="card"><span class="chip">Nails</span><h3>Manicure / Pedicure</h3><p>Care for hands and feet.</p><span class="price">from ₹599</span><p class="detail">Confirm manicure, pedicure, or both on WhatsApp.</p></article>
+<article class="card"><span class="chip">Makeup</span><h3>Bridal Package</h3><p>Bridal makeup and occasion styling.</p><span class="price">from ₹9,999</span><p class="detail">Confirm date, package details, and trial on WhatsApp.</p></article>
+<article class="card"><span class="chip">Hair</span><h3>Beard Grooming</h3><p>Beard shaping and grooming.</p><span class="price">from ₹149</span><p class="detail">Walk in, or confirm a time on WhatsApp.</p></article>
+<article class="card"><span class="chip">Spa</span><h3>Spa</h3><p>Spa and relaxation services.</p><span class="price">Ask on WhatsApp</span><p class="detail">Ask on WhatsApp what is available on your date.</p></article>
+<article class="card"><span class="chip">Mehendi</span><h3>Mehendi</h3><p>Mehendi for occasions and celebrations.</p><span class="price">Ask on WhatsApp</span><p class="detail">Ask on WhatsApp for designs and availability.</p></article>
+<article class="card"><span class="chip">Nails</span><h3>Nail Art</h3><p>Nail art and nail care.</p><span class="price">Ask on WhatsApp</span><p class="detail">Discuss styles on WhatsApp before your visit.</p></article>
+<article class="card"><span class="chip">Skin</span><h3>Skin &amp; Face Care</h3><p>Face and skin care.</p><span class="price">Ask on WhatsApp</span><p class="detail">Confirm the right option on WhatsApp first.</p></article>
 </div></div></section>
 
 <section id="gallery"><div class="wrap">
-<div class="rule reveal"></div><h2 class="reveal">Inside the salon</h2>
-<p class="sub reveal">Real photos from the salon — tap a photo to view it larger. Swipe left or right in the viewer on mobile. Gallery photos are the salon’s own photos from the earlier demo; no stock photos are used.</p>
+<div class="rule"></div><h2>Before / After Gallery</h2>
+<p class="sub"><span class="demolabel">DEMO LOOKS — NOT REAL TRANSFORMATIONS</span><br>Drag the handle to compare two demo looks. Real before/after photos from the salon will replace these demo looks on purchase — no pair on this page is a real client's transformation.</p>
+<div class="ba" id="ba">
+<img src="photos/gallery-soft-curls.jpg" alt="Demo look B: soft curls">
+<div class="ba-top" id="baTop"><img src="photos/gallery-glossy-layers.jpg" alt="Demo look A: glossy layers"></div>
+<span class="ba-label l">Look A</span><span class="ba-label r">Look B</span>
+<div class="ba-handle" id="baHandle"></div>
+<input type="range" id="baRange" min="0" max="100" value="50" aria-label="Compare demo looks">
+</div>
+<p class="sub" style="margin-top:28px">Real photos from the salon — tap a photo to view it larger. No stock photos are used.</p>
 <div class="pills" role="group" aria-label="Gallery filters">
 <button class="pill active" data-filter="all">All</button><button class="pill" data-filter="hair">Hair</button>
 </div>
@@ -230,41 +198,6 @@ footer a{color:var(--gold2)}
 <button class="tile" data-cat="hair" data-title="Soft Curls" data-text="Long hair styled in soft curls." data-img="photos/gallery-soft-curls.jpg"><img src="photos/gallery-soft-curls.jpg" alt="Long hair styled in soft curls"><span>Soft Curls<small>Hair</small></span></button>
 </div></div></section>
 
-
-<section id="looks"><div class="wrap">
-<div class="rule reveal"></div><h2 class="reveal">Looks to try</h2>
-<p class="sub reveal">Real salon photos, in a loop and in a swipe row — same photos as the gallery, no new images.</p>
-</div>
-<div class="marquee" aria-label="Salon looks marquee"><div class="marquee-track">
-<img src="photos/gallery-signature-curls.jpg" alt="Signature curls"><img src="photos/gallery-red-ombre.jpg" alt="Red ombre hair"><img src="photos/gallery-glossy-layers.jpg" alt="Glossy layered hair"><img src="photos/gallery-soft-curls.jpg" alt="Soft curls">
-<img src="photos/gallery-signature-curls.jpg" alt="" aria-hidden="true"><img src="photos/gallery-red-ombre.jpg" alt="" aria-hidden="true"><img src="photos/gallery-glossy-layers.jpg" alt="" aria-hidden="true"><img src="photos/gallery-soft-curls.jpg" alt="" aria-hidden="true">
-</div></div>
-<div class="wrap" style="margin-top:20px"><div class="hrow">
-<figure><img src="photos/gallery-signature-curls.jpg" alt="Signature curls"><figcaption>Signature Curls</figcaption></figure>
-<figure><img src="photos/gallery-red-ombre.jpg" alt="Red ombre hair"><figcaption>Red Ombre</figcaption></figure>
-<figure><img src="photos/gallery-glossy-layers.jpg" alt="Glossy layered hair"><figcaption>Glossy Layers</figcaption></figure>
-<figure><img src="photos/gallery-soft-curls.jpg" alt="Soft curls"><figcaption>Soft Curls</figcaption></figure>
-</div></div></section>
-
-<section id="craft3d"><div class="wrap">
-<div class="rule reveal"></div><h2 class="reveal">Craft, in three dimensions</h2>
-<p class="sub reveal">Scroll through this section on a laptop or desktop and a gold scissors-and-comb set turns, opens apart, and comes back together — the tools of the craft, shown the way a premium product page shows its object.</p>
-<div class="craft3d">
-<div>
-<p>On a laptop, the 3D object below is driven by your scroll: it rotates as you move down the page, its parts separate into an exploded view halfway through, then reassemble as you continue. No video, no sound, no download — it is drawn live in your browser.</p>
-<p class="craft3d-note">This 3D view appears on laptop and desktop screens only. On a phone or tablet you see the still gold version here instead, so the page stays fast and smooth to scroll.</p>
-<p><a class="btn magnetic" href="#book">Book on WhatsApp</a></p>
-</div>
-<div class="craft3d-stage" id="craft3d-stage">
-<canvas id="craft3d-canvas" aria-label="Gold scissors and comb in 3D, rotating as you scroll"></canvas>
-<div id="craft3d-fallback" role="img" aria-label="Gold scissors, still version for mobile">
-<div class="fb-scissors" aria-hidden="true">&#9986;</div>
-<p><b style="color:var(--gold2)">Gold scissors &amp; comb</b><br>The 3D version of this section appears on laptop and desktop screens. On this device you see the still version, so scrolling stays fast.</p>
-</div>
-</div>
-</div>
-</div></section>
-
 <div class="lb" id="lb" role="dialog" aria-modal="true"><div class="lb-box" id="lbBox">
 <img id="lbImg" src="" alt="">
 <h3 id="lbTitle"></h3><p id="lbText"></p>
@@ -272,37 +205,18 @@ footer a{color:var(--gold2)}
 </div></div>
 
 <section id="reviews"><div class="wrap">
-<div class="rule reveal"></div><h2 class="reveal">What guests come back for</h2>
-<p class="sub reveal">In general terms, guests value a calm space, careful work and a finish that lasts beyond the visit.</p>
+<div class="rule"></div><h2>Testimonials</h2>
+<p class="sub">Real client reviews will appear here once the salon provides them. No reviews, names, or ratings have been invented for this demo.</p>
 <div class="quotes">
-<div class="quote reveal"><p>&ldquo;A calm place, careful work, and a finish that feels right.&rdquo;</p><small>Guest experience, in general</small></div>
-<div class="quote reveal"><p>&ldquo;Good for a regular cut, and for getting ready for an occasion.&rdquo;</p><small>Guest experience, in general</small></div>
-</div></div></section>
-
-<section id="why"><div class="wrap">
-<div class="rule reveal"></div><h2 class="reveal">Why book here</h2>
-<p class="sub reveal">Plainly, and without guessing: this page gives you what the old website does not.</p>
-<div class="grid">
-<article class="card reveal"><h3>Real Serampore address</h3><p>241, G.T. Road, Opp. New Kolkata, Mahesh, Serampore 712202 — the salon you can actually walk into, not a mixed-up Mumbai or Ballygunge listing.</p></article>
-<article class="card reveal"><h3>Booking that works</h3><p>Call 86979 74717, or send the request on WhatsApp — and get a confirmation from the salon before you visit.</p></article>
-<article class="card reveal"><h3>Your time, not a fixed slot</h3><p>Write your preferred time freely, within 10 AM – 8 PM. No slot list to squeeze into.</p></article>
-<article class="card reveal"><h3>See it before you visit</h3><p>A gallery and a clear services list, so you know what kind of place it is before you book.</p></article>
-<article class="card reveal"><h3>Easy to find</h3><p>Get Directions opens the exact G.T. Road location on Google Maps, with the phone numbers beside it.</p></article>
-</div></div></section>
-
-
-<section id="stack"><div class="wrap">
-<div class="rule reveal"></div><h2 class="reveal">Three things, one visit</h2>
-<p class="sub reveal">Short cards that stack as you scroll — hair, skin, and makeup, in that order.</p>
-<div class="stack">
-<article class="stack-card reveal"><h3>Hair</h3><p>Cuts, colour, keratin and spa care — see the services list for indicative starting prices.</p></article>
-<article class="stack-card reveal"><h3>Skin</h3><p>Facials and cleanup for a cleaner, fresher glow.</p></article>
-<article class="stack-card reveal"><h3>Makeup</h3><p>Bridal and occasion styling — confirm details on WhatsApp before your visit.</p></article>
-</div></div></section>
+<div class="quote"><p>&ldquo;Your review here.&rdquo;</p><small>Placeholder — real client review to be added by the salon</small></div>
+<div class="quote"><p>&ldquo;Your review here.&rdquo;</p><small>Placeholder — real client review to be added by the salon</small></div>
+</div>
+<p style="margin-top:18px"><a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Valentino+Salon+Serampore+241+GT+Road" target="_blank" rel="noopener">See reviews on Google</a></p>
+</div></section>
 
 <section id="book"><div class="wrap">
-<div class="rule reveal"></div><h2 class="reveal">Request a booking</h2>
-<p class="sub reveal">Choose your own time — there are no fixed slots. Choose how to send your request: on WhatsApp, or as a demo entry in the booking dashboard below.</p>
+<div class="rule"></div><h2>Request a booking</h2>
+<p class="sub">Choose your own time — there are no fixed slots. Choose how to send your request: on WhatsApp, or as a demo entry in the booking dashboard below.</p>
 <form id="bookForm">
 <div><label for="bName">Your name</label><input id="bName" required placeholder="Your name"></div>
 <div><label for="bPhone">Your phone</label><input id="bPhone" required inputmode="tel" placeholder="10-digit phone"></div>
@@ -314,13 +228,13 @@ footer a{color:var(--gold2)}
 <label><input type="radio" name="sendMode" value="whatsapp" checked><span>Send via WhatsApp<small>Opens WhatsApp to 86979 74717 with your request ready to send.</small></span></label>
 <label><input type="radio" name="sendMode" value="dashboard"><span>Save to Demo Dashboard<small>Saved only in this browser (demo) and shown in the Demo Booking Dashboard below.</small></span></label>
 </div></div>
-<div class="full"><button class="btn" id="submitBtn" type="submit">Request Booking on WhatsApp</button>
+<div class="full"><button class="btn magnetic" id="submitBtn" type="submit">Request Booking on WhatsApp</button>
 <p class="note" id="sendNote">This opens WhatsApp to 86979 74717. Nothing is booked until the salon confirms on WhatsApp.</p></div>
 </form>
 <div class="dash" id="dashboard">
 <span class="demolabel">DEMO</span>
 <h3>Demo Booking Dashboard</h3>
-<p class="note">This is a demo only — in real booking software (Google Sheet / Fresha / Calendly) details would be saved in the same way, visible in the salon’s account. This table is NOT a real Google Sheet or real software backend — it only stores bookings submitted in this browser demo, in this browser’s localStorage, and starts empty.</p>
+<p class="note">This is a demo only — in real booking software (Google Sheet / Fresha / Calendly) details would be saved in the same way, visible in the salon's account. This table is NOT a real Google Sheet or real software backend — it only stores bookings submitted in this browser demo, in this browser's localStorage, and starts empty.</p>
 <p class="note" id="dashEmpty">No demo bookings yet — submit the form above with “Save to Demo Dashboard” to see one here.</p>
 <div class="dashwrap"><table aria-label="Demo booking dashboard">
 <thead><tr><th>Name</th><th>Phone</th><th>Service</th><th>Date</th><th>Preferred time</th></tr></thead>
@@ -329,81 +243,26 @@ footer a{color:var(--gold2)}
 <p style="margin-top:14px"><button class="btn ghost" id="clearDash" type="button">Clear demo bookings</button></p>
 </div></div></section>
 
-<section id="visit"><div class="wrap">
-<div class="banner reveal"><h2>Visit us</h2>
-<p>241, G.T. Road, Opp. New Kolkata / Triveni Mall, Mahesh,<br>Serampore, West Bengal 712202 &middot; Open daily, 10 AM – 8 PM<br>Call / WhatsApp: 86979 74717 &middot; 91636 68888 &middot; Instagram: @valentinosalon.in</p>
+<section id="contact"><div class="wrap">
+<div class="banner"><h2>Visit us</h2>
+<p>241, G.T. Road, Opp. New Kolkata, Mahesh,<br>Serampore, West Bengal 712202 &middot; Open daily, 10 AM – 8 PM<br>Call / WhatsApp: 86979 74717 &middot; 91636 68888</p>
 <p><a class="btn" href="#book">Request Booking on WhatsApp</a></p>
 <div class="mapwrap"><iframe title="Valentino Salon, Serampore on Google Maps" src="https://www.google.com/maps?q=241%2C%20G.T.%20Road%2C%20Mahesh%2C%20Serampore%2C%20West%20Bengal%20712202&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
 <div class="contactrow">
 <a class="btn ghost" href="tel:+918697974717">Call 86979 74717</a>
-<a class="btn ghost" href="https://instagram.com/valentinosalon.in" target="_blank" rel="noopener">Instagram @valentinosalon.in</a>
 <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=241%2C%20G.T.%20Road%2C%20Mahesh%2C%20Serampore%20712202" target="_blank" rel="noopener">Get Directions</a>
 </div></div>
 </div></section>
 </main>
 
-<footer><div class="wrap">Valentino Salon, Serampore - 241, G.T. Road, Opp. New Kolkata, Mahesh, Serampore 712202, 10 AM-8 PM, 86979 74717<br>Valentino Salon (Head Turners), Serampore &middot; Also on WhatsApp: 91636 68888 &middot; Instagram: @valentinosalon.in<br>Prices shown are indicative starting prices only; final pricing and availability: please confirm on WhatsApp before visiting. Open 10 AM – 8 PM daily.</div></footer>
+<footer><div class="wrap">Valentino Salon, Serampore - 241, G.T. Road, Opp. New Kolkata, Mahesh, Serampore 712202, 10 AM-8 PM daily, 86979 74717 &middot; Also on WhatsApp: 91636 68888<br>Instagram: @valentinosalon.in — <a href="https://instagram.com/valentinosalon.in" target="_blank" rel="noopener">@valentinosalon.in</a><br>Prices shown are indicative starting prices only; final pricing and availability: please confirm on WhatsApp before visiting.</div></footer>
 <a class="wa" href="https://wa.me/918697974717" aria-label="Chat on WhatsApp">&#9990;</a>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
 (function(){
 var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-var hdr=document.getElementById('hdr');
-function onScroll(){hdr.classList.toggle('scrolled',window.scrollY>10)}
-window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-// Scroll spy
-var links=document.querySelectorAll('[data-spy]');
-var spy=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.toggle('active',a.dataset.spy===e.target.id)})}})}, {rootMargin:'-40% 0px -55% 0px'});
-['services','gallery','reviews','visit','book'].forEach(function(id){var el=document.getElementById(id);if(el)spy.observe(el)});
-// Smooth scroll + reveal, only transform/opacity
-if(!reduced && window.gsap && window.ScrollTrigger){
-  gsap.registerPlugin(ScrollTrigger);
-  if(window.Lenis){var lenis=new Lenis({smoothWheel:true});function raf(t){lenis.raf(t);requestAnimationFrame(raf)}requestAnimationFrame(raf)}
-  gsap.to('.hero-el',{opacity:1,y:0,duration:.7,stagger:.12,ease:'power2.out'});
-  gsap.utils.toArray('.reveal:not(.hero-el)').forEach(function(el){
-    gsap.to(el,{opacity:1,y:0,duration:.7,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%'}});
-  });
-}else{document.querySelectorAll('.reveal').forEach(function(el){el.style.opacity=1;el.style.transform='none'})}
-
-// ANIM — salon-fit subset only. Desktop-only effects gated below.
-// 2 Kinetic typography: words slide up out of masks
-if(!reduced && window.gsap){
-  gsap.fromTo('.k-word',{yPercent:110},{yPercent:0,duration:.8,stagger:.07,ease:'power3.out',delay:.15});
-}
-// 9 Hero zoom macro reveal: close-up scale -> full view on scroll (transform only)
-if(!reduced && window.gsap && window.ScrollTrigger){
-  gsap.fromTo('.hero-photo img',{scale:1.25},{scale:1,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
-}
-// 10 Glow path under every section heading
-document.querySelectorAll('section h2').forEach(function(h){
-  var g=document.createElement('span');g.className='glowline';h.appendChild(g);
-  if(!reduced && window.gsap && window.ScrollTrigger){
-    gsap.fromTo(g,{scaleX:0},{scaleX:1,duration:.7,ease:'power2.out',scrollTrigger:{trigger:h,start:'top 88%'}});
-  } else { g.style.transform='none'; }
-});
-// 4 Shutter section reveal (GSAP only; no JS = no panel, headings stay visible)
-if(!reduced && window.gsap && window.ScrollTrigger){
-  document.querySelectorAll('section h2').forEach(function(h){
-    var wrap=document.createElement('div');wrap.className='shutter-wrap';
-    h.parentNode.insertBefore(wrap,h);wrap.appendChild(h);
-    var panel=document.createElement('div');panel.className='shutter-panel';wrap.appendChild(panel);
-    gsap.to(panel,{xPercent:101,duration:.6,ease:'power2.inOut',scrollTrigger:{trigger:wrap,start:'top 88%'},onComplete:function(){panel.style.display='none'}});
-  });
-}
-// 11 SVG gold guide line draws on scroll
-(function(){
-  var p=document.getElementById('guidePath');if(!p)return;
-  var len;try{len=p.getTotalLength()}catch(err){len=400}
-  p.style.strokeDasharray=len;p.style.strokeDashoffset=len;
-  if(!reduced && window.gsap && window.ScrollTrigger){
-    gsap.to(p,{strokeDashoffset:0,ease:'none',scrollTrigger:{trigger:'.guide-wrap',start:'top 90%',end:'bottom 45%',scrub:true}});
-  } else { p.style.strokeDashoffset=0; }
-})();
-// Desktop-only: 12 magnetic CTA + 13 tilt cards. Completely OFF on mobile/touch.
-var isDesktop = window.matchMedia('(pointer:fine) and (min-width:1024px)').matches;
+/* Magnetic CTA — desktop only (pointer:fine + min-width 1024px). Off on mobile. */
+var isDesktop=window.matchMedia('(pointer:fine) and (min-width:1024px)').matches;
 if(!reduced && isDesktop){
   document.querySelectorAll('.magnetic').forEach(function(btn){
     btn.addEventListener('mousemove',function(e){
@@ -413,21 +272,25 @@ if(!reduced && isDesktop){
     });
     btn.addEventListener('mouseleave',function(){btn.style.transition='transform .45s cubic-bezier(.34,1.56,.64,1)';btn.style.transform='';});
   });
-  document.querySelectorAll('.tile, .bento .card').forEach(function(card){
-    card.addEventListener('mousemove',function(e){
-      var r=card.getBoundingClientRect();
-      var px=(e.clientX-r.left)/r.width-0.5, py=(e.clientY-r.top)/r.height-0.5;
-      card.style.transform='perspective(800px) rotateY('+(px*12)+'deg) rotateX('+(-py*12)+'deg)';
-    });
-    card.addEventListener('mouseleave',function(){card.style.transform='';});
-  });
 }
-// Gallery filter
+/* Before / After slider: draggable via range input + pointer drag */
+var ba=document.getElementById('ba'),baTop=document.getElementById('baTop'),baHandle=document.getElementById('baHandle'),baRange=document.getElementById('baRange');
+function setBA(p){
+  p=Math.max(0,Math.min(100,p));
+  baTop.style.width=p+'%';baHandle.style.left=p+'%';
+  var img=baTop.querySelector('img');if(img)img.style.width=ba.offsetWidth+'px';
+  if(baRange)baRange.value=p;
+}
+if(ba&&baTop&&baHandle){
+  setBA(50);
+  if(baRange)baRange.addEventListener('input',function(){setBA(parseFloat(baRange.value))});
+  window.addEventListener('resize',function(){setBA(baRange?parseFloat(baRange.value):50)});
+}
+/* Gallery filter + lightbox */
 var pills=document.querySelectorAll('.pill'),tiles=Array.prototype.slice.call(document.querySelectorAll('.tile'));
 pills.forEach(function(p){p.addEventListener('click',function(){
   pills.forEach(function(x){x.classList.remove('active')});p.classList.add('active');
   var f=p.dataset.filter;tiles.forEach(function(t){t.classList.toggle('hidden',f!=='all'&&t.dataset.cat!==f)});
-  visible=tiles.filter(function(t){return !t.classList.contains('hidden')});
 })});
 var visible=tiles.slice(),idx=0,lb=document.getElementById('lb');
 function show(i){if(!visible.length)return;idx=(i+visible.length)%visible.length;var t=visible[idx];var im=document.getElementById('lbImg');if(t.dataset.img){im.src=t.dataset.img;im.alt=t.dataset.title;im.style.display='block'}else{im.style.display='none'}document.getElementById('lbTitle').innerHTML=t.dataset.title;document.getElementById('lbText').textContent=t.dataset.text;lb.classList.add('open')}
@@ -439,7 +302,7 @@ lb.addEventListener('click',function(e){if(e.target===lb)lb.classList.remove('op
 var sx=0;document.getElementById('lbBox').addEventListener('touchstart',function(e){sx=e.changedTouches[0].clientX},{passive:true});
 document.getElementById('lbBox').addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)show(idx+(dx<0?1:-1))},{passive:true});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('open')});
-// Booking -> WhatsApp (unchanged) OR Demo Dashboard (localStorage only)
+/* Booking -> WhatsApp OR Demo Dashboard (localStorage only) */
 var KEY='valentino-demo-bookings-v1';
 function loadBookings(){try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(err){return[]}}
 function renderBookings(){
@@ -476,123 +339,6 @@ document.getElementById('bookForm').addEventListener('submit',function(e){
   var msg='Hello Valentino Salon, Serampore! I would like to request a booking.\nName: '+booking.name+'\nPhone: '+booking.phone+'\nService: '+booking.service+'\nDate: '+booking.date+'\nPreferred time: '+booking.time;
   window.open('https://wa.me/918697974717?text='+encodeURIComponent(msg),'_blank');
 });
-})();
-</script>
-<script>
-/* 1 Scroll-Driven 3D Canvas — DESKTOP ONLY.
-   Gate: pointer:fine AND min-width 1024px AND no reduced motion.
-   On mobile/tablet/reduced-motion the fallback stays visible and
-   Three.js is NEVER loaded, so mobile scrolling is unaffected. */
-(function(){
-  var stage=document.getElementById('craft3d-stage');
-  var canvas=document.getElementById('craft3d-canvas');
-  if(!stage||!canvas) return;
-  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var isDesktop3D=window.matchMedia('(pointer:fine) and (min-width:1024px)').matches;
-  if(reduced||!isDesktop3D) return; /* fallback remains, no Three.js load */
-  var loader=document.createElement('script');
-  loader.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-  loader.onload=function(){ initCraft3D(); };
-  loader.onerror=function(){ /* keep static fallback if CDN fails */ };
-  document.head.appendChild(loader);
-
-  function initCraft3D(){
-    if(!window.THREE) return;
-    stage.classList.add('craft3d-live');
-    var THREE=window.THREE;
-    var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));
-    var scene=new THREE.Scene();
-    var camera=new THREE.PerspectiveCamera(42,1,0.1,100);
-    camera.position.set(0,0.6,7.5);
-    scene.add(new THREE.AmbientLight(0xffffff,0.65));
-    var key=new THREE.DirectionalLight(0xffffff,0.9); key.position.set(4,6,6); scene.add(key);
-    var gold=new THREE.PointLight(0xe8cf8a,1.1,20); gold.position.set(-4,-2,4); scene.add(gold);
-
-    var goldMat=new THREE.MeshStandardMaterial({color:0xc9a24b,metalness:0.9,roughness:0.28});
-    var brightMat=new THREE.MeshStandardMaterial({color:0xe8cf8a,metalness:0.95,roughness:0.18});
-    var darkMat=new THREE.MeshStandardMaterial({color:0x8a6a26,metalness:0.85,roughness:0.35});
-
-    /* Stylised gold scissors + comb, built only from code primitives.
-       No external GLTF, no downloaded model. */
-    var group=new THREE.Group(); scene.add(group);
-    var parts=[]; /* {mesh, base:Vector3, dir:Vector3} for exploded view */
-    function add(mesh,dir){
-      mesh.position.copy(mesh.userData.base);
-      parts.push({mesh:mesh,base:mesh.userData.base.clone(),dir:dir});
-      group.add(mesh); return mesh;
-    }
-    function box(w,h,d,mat,x,y,z){
-      var m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);
-      m.userData.base=new THREE.Vector3(x,y,z); m.position.set(x,y,z); return m;
-    }
-    /* Scissors: two blades crossing at a pivot, two ring handles. */
-    var pivot=new THREE.Mesh(new THREE.SphereGeometry(0.22,24,24),brightMat);
-    pivot.userData.base=new THREE.Vector3(0,0,0); pivot.position.set(0,0,0);
-    group.add(pivot);
-    var blade1=box(0.16,2.4,0.05,goldMat,-0.35,1.15,0);
-    blade1.rotation.z=0.28; add(blade1,new THREE.Vector3(-0.7,0.6,0));
-    var blade2=box(0.16,2.4,0.05,brightMat,0.35,1.15,0);
-    blade2.rotation.z=-0.28; add(blade2,new THREE.Vector3(0.7,0.6,0));
-    var handle1=new THREE.Mesh(new THREE.CylinderGeometry(0.09,0.09,1.5,16),darkMat);
-    handle1.userData.base=new THREE.Vector3(-0.55,-0.95,0); handle1.position.set(-0.55,-0.95,0); handle1.rotation.z=0.28;
-    add(handle1,new THREE.Vector3(-0.8,-0.5,0));
-    var handle2=new THREE.Mesh(new THREE.CylinderGeometry(0.09,0.09,1.5,16),darkMat);
-    handle2.userData.base=new THREE.Vector3(0.55,-0.95,0); handle2.position.set(0.55,-0.95,0); handle2.rotation.z=-0.28;
-    add(handle2,new THREE.Vector3(0.8,-0.5,0));
-    var ring1=new THREE.Mesh(new THREE.TorusGeometry(0.38,0.09,16,32),goldMat);
-    ring1.userData.base=new THREE.Vector3(-0.95,-1.85,0); ring1.position.set(-0.95,-1.85,0);
-    add(ring1,new THREE.Vector3(-1,0,0));
-    var ring2=new THREE.Mesh(new THREE.TorusGeometry(0.38,0.09,16,32),goldMat);
-    ring2.userData.base=new THREE.Vector3(0.95,-1.85,0); ring2.position.set(0.95,-1.85,0);
-    add(ring2,new THREE.Vector3(1,0,0));
-    /* Comb: spine + teeth, standing to the right of the scissors. */
-    var comb=new THREE.Group(); comb.position.set(2.3,0.4,0); group.add(comb);
-    var spine=new THREE.Mesh(new THREE.BoxGeometry(0.28,2.6,0.12),brightMat);
-    comb.add(spine);
-    for(var i=0;i<9;i++){
-      var tooth=new THREE.Mesh(new THREE.BoxGeometry(0.5,0.09,0.1),goldMat);
-      tooth.position.set(-0.32,-1.1+i*0.28,0); comb.add(tooth);
-    }
-    var combPart={mesh:comb,base:comb.position.clone(),dir:new THREE.Vector3(1,0.3,0)};
-    parts.push(combPart);
-
-    var state={progress:0};
-    function render(){
-      var p=state.progress;
-      /* Scroll drives rotation; exploded view peaks mid-scroll, then reassembles. */
-      group.rotation.y=p*Math.PI*1.5;
-      group.rotation.x=0.15+Math.sin(p*Math.PI)*0.15;
-      var explode=Math.sin(p*Math.PI)*0.9;
-      parts.forEach(function(pt){
-        pt.mesh.position.set(
-          pt.base.x+pt.dir.x*explode,
-          pt.base.y+pt.dir.y*explode,
-          pt.base.z+pt.dir.z*explode
-        );
-      });
-      renderer.render(scene,camera);
-    }
-    function size(){
-      var w=stage.clientWidth||640, h=420;
-      renderer.setSize(w,h,false);
-      camera.aspect=w/h; camera.updateProjectionMatrix();
-    }
-    size(); window.addEventListener('resize',function(){size();render();});
-    /* Scroll scrub: GSAP ScrollTrigger if present, else plain scroll listener. */
-    if(window.gsap&&window.ScrollTrigger){
-      window.gsap.to(state,{progress:1,ease:'none',
-        scrollTrigger:{trigger:'#craft3d',start:'top bottom',end:'bottom top',scrub:true,onUpdate:render},
-        onUpdate:render});
-    }else{
-      window.addEventListener('scroll',function(){
-        var r=stage.getBoundingClientRect(), vh=window.innerHeight||800;
-        var p=1-(r.top+r.height/2)/ (vh+r.height);
-        state.progress=Math.max(0,Math.min(1,p)); render();
-      },{passive:true});
-    }
-    render();
-  }
 })();
 </script>
 </body>
