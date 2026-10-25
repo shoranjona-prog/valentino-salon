@@ -122,7 +122,45 @@ footer a{color:var(--gold2)}
 .mapwrap iframe{width:100%;height:340px;border:0;display:block}
 @media(max-width:640px){.mapwrap iframe{height:280px}}
 .lb-box img{width:100%;max-height:60vh;object-fit:contain;border-radius:12px;display:block;margin:0 auto 14px}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}*{scroll-behavior:auto!important}}
+
+/* ANIM: salon-fit subset only (see notes) */
+/* 2 Kinetic typography masks */
+.mask{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em}
+.k-word{display:inline-block;will-change:transform}
+/* 6 Bento elastic hover (services grid) */
+.bento .card{transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .45s ease}
+.bento .card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 18px 34px rgba(0,0,0,.4)}
+@media(min-width:820px){.bento article:nth-child(8){grid-column:span 2}}
+/* 7 Marquee (transform only, mobile-safe) + native horizontal swipe row */
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0}
+.marquee-track{display:flex;width:max-content;animation:marquee 32s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track img{width:180px;height:180px;object-fit:cover;border-radius:14px;border:1px solid var(--line);display:block;margin-right:14px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.hrow{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px}
+.hrow figure{flex:0 0 240px;margin:0;scroll-snap-align:start;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card)}
+.hrow img{width:100%;height:200px;object-fit:cover;display:block}
+.hrow figcaption{padding:12px 14px;font-weight:600}
+/* 11 SVG gold guide line */
+.guide-wrap{max-width:1080px;margin:0 auto;padding:6px 20px 0}
+.guide-wrap svg{width:100%;height:110px;display:block}
+#guidePath{fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;filter:drop-shadow(0 0 6px rgba(201,162,75,.7))}
+/* 10 Glow path under headings */
+.glowline{display:block;width:56px;height:3px;margin-top:12px;background:linear-gradient(90deg,var(--gold),var(--gold2));box-shadow:0 0 12px rgba(201,162,75,.85);transform-origin:left center}
+/* 4 Shutter section reveal */
+.shutter-wrap{position:relative;overflow:hidden}
+.shutter-panel{position:absolute;inset:0;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:2;pointer-events:none}
+/* 14 Hero logo morph (inline badge only, never blocks content) */
+.morph-badge{width:56px;height:56px;background:var(--gold);color:#171310;display:flex;align-items:center;justify-content:center;font-family:"Cormorant Garamond",serif;font-size:32px;font-weight:700;animation:morph-shape 1.4s ease forwards}
+@keyframes morph-shape{0%{clip-path:circle(50% at 50% 50%)}50%{clip-path:polygon(50% 0,100% 100%,0 100%)}100%{clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}}
+/* 15 Sticky stacking — short cards only, never the booking form */
+.stack-card{position:sticky;top:84px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:16px}
+.stack-card h3{font-family:"Cormorant Garamond",serif;font-size:28px;margin:0 0 8px}
+.stack-card p{color:var(--mut);margin:0}
+/* 12 Magnetic CTA (transform only; JS gates to desktop) */
+.magnetic{will-change:transform}
+@media(max-width:1023px){.magnetic{will-change:auto}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}*{scroll-behavior:auto!important}.marquee-track{animation:none}.morph-badge{animation:none}.glowline{transform:none}}
 </style>
 </head>
 <body>
@@ -131,26 +169,28 @@ footer a{color:var(--gold2)}
 <nav class="navlinks" aria-label="Sections">
 <a href="#services" data-spy="services">Services</a><a href="#gallery" data-spy="gallery">Gallery</a><a href="#reviews" data-spy="reviews">Reviews</a><a href="#visit" data-spy="visit">Visit</a><a href="#book" data-spy="book">Book</a>
 </nav>
-<a class="btn" href="#book">Book Now</a>
+<a class="btn magnetic" href="#book">Book Now</a>
 </div></header>
 
 <main>
 <section class="hero"><div class="wrap">
+<div class="morph-badge reveal hero-el" aria-hidden="true">V</div>
 <p class="eyebrow reveal hero-el">Head Turners &middot; Mahesh, Serampore</p>
-<h1 class="reveal hero-el">Good hair, calm skin,<br><em>done beautifully.</em></h1>
+<h1 class="reveal hero-el"><span class="mask"><span class="k-word">Good</span></span> <span class="mask"><span class="k-word">hair,</span></span><br><span class="mask"><span class="k-word">calm</span></span> <span class="mask"><span class="k-word">skin,</span></span><br><span class="mask"><span class="k-word" style="color:var(--gold2)">done</span></span> <span class="mask"><span class="k-word" style="color:var(--gold2)">beautifully.</span></span></h1>
 <p class="lede reveal hero-el">Valentino Salon in Serampore — hair, skin, makeup and wellness, in a calm, premium space on G.T. Road.</p>
 <p class="reveal hero-el" style="background:var(--card);border:1px solid var(--gold);border-radius:14px;padding:14px 18px;max-width:680px"><b style="color:var(--gold2)">Valentino Salon, Serampore</b><br>241, G.T. Road, Opp. New Kolkata, Mahesh, Serampore 712202 &middot; Open 10 AM&ndash;8 PM &middot; Call / WhatsApp: 86979 74717<br><small style="color:var(--mut)">This is the Serampore salon on G.T. Road, Mahesh — not a Mumbai or Ballygunge branch.</small></p>
-<p class="reveal hero-el"><a class="btn" href="#book">Book on WhatsApp</a></p>
+<p class="reveal hero-el"><a class="btn magnetic" href="#book">Book on WhatsApp</a></p>
 <figure class="hero-photo reveal hero-el"><img src="photos/hero-interior.jpg" alt="Valentino Salon interior in Serampore, with illuminated mirrors and styling chairs" loading="eager"><figcaption>Valentino Salon<small>241, G.T. Road &middot; Opp. New Kolkata / Triveni Mall</small></figcaption></figure>
 </div></section>
 
 <div class="wrap strip reveal"><span><b>Open daily</b> &middot; 10 AM &ndash; 8 PM</span><span><b>WhatsApp booking</b> &middot; 86979 74717</span><span><b>Also on WhatsApp</b> &middot; 91636 68888</span><span><b>Instagram</b> &middot; @valentinosalon.in</span></div>
 
+<div class="guide-wrap" aria-hidden="true"><svg viewBox="0 0 100 120" preserveAspectRatio="none" role="img"><path id="guidePath" d="M50 2 C 20 30, 80 55, 50 80 S 50 118, 50 118" /></svg></div>
 <section id="services"><div class="wrap">
 <div class="rule reveal"></div><h2 class="reveal">Services</h2>
 <p class="sub reveal">Prices below are indicative starting prices (see the note above) — please confirm on WhatsApp before your visit. Categories without a price are marked “Ask on WhatsApp”.</p>
 <p class="price-note reveal">Indicative starting prices based on typical Kolkata salon rates; final pricing to be confirmed by the salon. These are not salon-confirmed prices — please confirm on WhatsApp before your visit.</p>
-<div class="grid">
+<div class="grid bento">
 <article class="card reveal"><span class="chip">Hair</span><h3>Haircut — Men</h3><p>Everyday cuts and styled finishes.</p><span class="price">from ₹199</span></article>
 <article class="card reveal"><span class="chip">Hair</span><h3>Haircut — Women</h3><p>Cuts and styling, shaped around your hair and routine.</p><span class="price">from ₹499</span></article>
 <article class="card reveal"><span class="chip">Hair</span><h3>Hair Spa</h3><p>Spa care for hair and scalp.</p><span class="price">from ₹799</span></article>
@@ -179,6 +219,22 @@ footer a{color:var(--gold2)}
 <button class="tile" data-cat="hair" data-title="Soft Curls" data-text="Long hair styled in soft curls." data-img="photos/gallery-soft-curls.jpg"><img src="photos/gallery-soft-curls.jpg" alt="Long hair styled in soft curls"><span>Soft Curls<small>Hair</small></span></button>
 </div></div></section>
 
+
+<section id="looks"><div class="wrap">
+<div class="rule reveal"></div><h2 class="reveal">Looks to try</h2>
+<p class="sub reveal">Real salon photos, in a loop and in a swipe row — same photos as the gallery, no new images.</p>
+</div>
+<div class="marquee" aria-label="Salon looks marquee"><div class="marquee-track">
+<img src="photos/gallery-signature-curls.jpg" alt="Signature curls"><img src="photos/gallery-red-ombre.jpg" alt="Red ombre hair"><img src="photos/gallery-glossy-layers.jpg" alt="Glossy layered hair"><img src="photos/gallery-soft-curls.jpg" alt="Soft curls">
+<img src="photos/gallery-signature-curls.jpg" alt="" aria-hidden="true"><img src="photos/gallery-red-ombre.jpg" alt="" aria-hidden="true"><img src="photos/gallery-glossy-layers.jpg" alt="" aria-hidden="true"><img src="photos/gallery-soft-curls.jpg" alt="" aria-hidden="true">
+</div></div>
+<div class="wrap" style="margin-top:20px"><div class="hrow">
+<figure><img src="photos/gallery-signature-curls.jpg" alt="Signature curls"><figcaption>Signature Curls</figcaption></figure>
+<figure><img src="photos/gallery-red-ombre.jpg" alt="Red ombre hair"><figcaption>Red Ombre</figcaption></figure>
+<figure><img src="photos/gallery-glossy-layers.jpg" alt="Glossy layered hair"><figcaption>Glossy Layers</figcaption></figure>
+<figure><img src="photos/gallery-soft-curls.jpg" alt="Soft curls"><figcaption>Soft Curls</figcaption></figure>
+</div></div></section>
+
 <div class="lb" id="lb" role="dialog" aria-modal="true"><div class="lb-box" id="lbBox">
 <img id="lbImg" src="" alt="">
 <h3 id="lbTitle"></h3><p id="lbText"></p>
@@ -202,6 +258,16 @@ footer a{color:var(--gold2)}
 <article class="card reveal"><h3>Your time, not a fixed slot</h3><p>Write your preferred time freely, within 10 AM – 8 PM. No slot list to squeeze into.</p></article>
 <article class="card reveal"><h3>See it before you visit</h3><p>A gallery and a clear services list, so you know what kind of place it is before you book.</p></article>
 <article class="card reveal"><h3>Easy to find</h3><p>Get Directions opens the exact G.T. Road location on Google Maps, with the phone numbers beside it.</p></article>
+</div></div></section>
+
+
+<section id="stack"><div class="wrap">
+<div class="rule reveal"></div><h2 class="reveal">Three things, one visit</h2>
+<p class="sub reveal">Short cards that stack as you scroll — hair, skin, and makeup, in that order.</p>
+<div class="stack">
+<article class="stack-card reveal"><h3>Hair</h3><p>Cuts, colour, keratin and spa care — see the services list for indicative starting prices.</p></article>
+<article class="stack-card reveal"><h3>Skin</h3><p>Facials and cleanup for a cleaner, fresher glow.</p></article>
+<article class="stack-card reveal"><h3>Makeup</h3><p>Bridal and occasion styling — confirm details on WhatsApp before your visit.</p></article>
 </div></div></section>
 
 <section id="book"><div class="wrap">
@@ -271,6 +337,61 @@ if(!reduced && window.gsap && window.ScrollTrigger){
     gsap.to(el,{opacity:1,y:0,duration:.7,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%'}});
   });
 }else{document.querySelectorAll('.reveal').forEach(function(el){el.style.opacity=1;el.style.transform='none'})}
+
+// ANIM — salon-fit subset only. Desktop-only effects gated below.
+// 2 Kinetic typography: words slide up out of masks
+if(!reduced && window.gsap){
+  gsap.fromTo('.k-word',{yPercent:110},{yPercent:0,duration:.8,stagger:.07,ease:'power3.out',delay:.15});
+}
+// 9 Hero zoom macro reveal: close-up scale -> full view on scroll (transform only)
+if(!reduced && window.gsap && window.ScrollTrigger){
+  gsap.fromTo('.hero-photo img',{scale:1.25},{scale:1,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+}
+// 10 Glow path under every section heading
+document.querySelectorAll('section h2').forEach(function(h){
+  var g=document.createElement('span');g.className='glowline';h.appendChild(g);
+  if(!reduced && window.gsap && window.ScrollTrigger){
+    gsap.fromTo(g,{scaleX:0},{scaleX:1,duration:.7,ease:'power2.out',scrollTrigger:{trigger:h,start:'top 88%'}});
+  } else { g.style.transform='none'; }
+});
+// 4 Shutter section reveal (GSAP only; no JS = no panel, headings stay visible)
+if(!reduced && window.gsap && window.ScrollTrigger){
+  document.querySelectorAll('section h2').forEach(function(h){
+    var wrap=document.createElement('div');wrap.className='shutter-wrap';
+    h.parentNode.insertBefore(wrap,h);wrap.appendChild(h);
+    var panel=document.createElement('div');panel.className='shutter-panel';wrap.appendChild(panel);
+    gsap.to(panel,{xPercent:101,duration:.6,ease:'power2.inOut',scrollTrigger:{trigger:wrap,start:'top 88%'},onComplete:function(){panel.style.display='none'}});
+  });
+}
+// 11 SVG gold guide line draws on scroll
+(function(){
+  var p=document.getElementById('guidePath');if(!p)return;
+  var len;try{len=p.getTotalLength()}catch(err){len=400}
+  p.style.strokeDasharray=len;p.style.strokeDashoffset=len;
+  if(!reduced && window.gsap && window.ScrollTrigger){
+    gsap.to(p,{strokeDashoffset:0,ease:'none',scrollTrigger:{trigger:'.guide-wrap',start:'top 90%',end:'bottom 45%',scrub:true}});
+  } else { p.style.strokeDashoffset=0; }
+})();
+// Desktop-only: 12 magnetic CTA + 13 tilt cards. Completely OFF on mobile/touch.
+var isDesktop = window.matchMedia('(pointer:fine) and (min-width:1024px)').matches;
+if(!reduced && isDesktop){
+  document.querySelectorAll('.magnetic').forEach(function(btn){
+    btn.addEventListener('mousemove',function(e){
+      var r=btn.getBoundingClientRect();
+      var x=(e.clientX-r.left-r.width/2)*0.3, y=(e.clientY-r.top-r.height/2)*0.3;
+      btn.style.transition='transform .05s linear';btn.style.transform='translate('+x+'px,'+y+'px)';
+    });
+    btn.addEventListener('mouseleave',function(){btn.style.transition='transform .45s cubic-bezier(.34,1.56,.64,1)';btn.style.transform='';});
+  });
+  document.querySelectorAll('.tile, .bento .card').forEach(function(card){
+    card.addEventListener('mousemove',function(e){
+      var r=card.getBoundingClientRect();
+      var px=(e.clientX-r.left)/r.width-0.5, py=(e.clientY-r.top)/r.height-0.5;
+      card.style.transform='perspective(800px) rotateY('+(px*12)+'deg) rotateX('+(-py*12)+'deg)';
+    });
+    card.addEventListener('mouseleave',function(){card.style.transform='';});
+  });
+}
 // Gallery filter
 var pills=document.querySelectorAll('.pill'),tiles=Array.prototype.slice.call(document.querySelectorAll('.tile'));
 pills.forEach(function(p){p.addEventListener('click',function(){
