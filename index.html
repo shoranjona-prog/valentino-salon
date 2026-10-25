@@ -157,6 +157,17 @@ footer a{color:var(--gold2)}
 .stack-card{position:sticky;top:84px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:16px}
 .stack-card h3{font-family:"Cormorant Garamond",serif;font-size:28px;margin:0 0 8px}
 .stack-card p{color:var(--mut);margin:0}
+/* 1 Scroll-Driven 3D Canvas — desktop only, static fallback on mobile */
+.craft3d{display:grid;grid-template-columns:1fr 1.15fr;gap:28px;align-items:center}
+@media(max-width:900px){.craft3d{grid-template-columns:1fr}}
+.craft3d-stage{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:radial-gradient(500px 300px at 50% 40%,rgba(201,162,75,.18),transparent 60%),#14110d;min-height:420px;position:relative}
+#craft3d-canvas{display:none;width:100%;height:420px}
+#craft3d-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;height:420px;padding:24px;text-align:center}
+#craft3d-fallback .fb-scissors{font-size:88px;color:var(--gold);line-height:1}
+#craft3d-fallback p{color:var(--mut);margin:0;max-width:320px}
+.craft3d-live #craft3d-canvas{display:block}
+.craft3d-live #craft3d-fallback{display:none}
+.craft3d-note{font-size:13px;color:var(--mut)}
 /* 12 Magnetic CTA (transform only; JS gates to desktop) */
 .magnetic{will-change:transform}
 @media(max-width:1023px){.magnetic{will-change:auto}}
@@ -234,6 +245,25 @@ footer a{color:var(--gold2)}
 <figure><img src="photos/gallery-glossy-layers.jpg" alt="Glossy layered hair"><figcaption>Glossy Layers</figcaption></figure>
 <figure><img src="photos/gallery-soft-curls.jpg" alt="Soft curls"><figcaption>Soft Curls</figcaption></figure>
 </div></div></section>
+
+<section id="craft3d"><div class="wrap">
+<div class="rule reveal"></div><h2 class="reveal">Craft, in three dimensions</h2>
+<p class="sub reveal">Scroll through this section on a laptop or desktop and a gold scissors-and-comb set turns, opens apart, and comes back together — the tools of the craft, shown the way a premium product page shows its object.</p>
+<div class="craft3d">
+<div>
+<p>On a laptop, the 3D object below is driven by your scroll: it rotates as you move down the page, its parts separate into an exploded view halfway through, then reassemble as you continue. No video, no sound, no download — it is drawn live in your browser.</p>
+<p class="craft3d-note">This 3D view appears on laptop and desktop screens only. On a phone or tablet you see the still gold version here instead, so the page stays fast and smooth to scroll.</p>
+<p><a class="btn magnetic" href="#book">Book on WhatsApp</a></p>
+</div>
+<div class="craft3d-stage" id="craft3d-stage">
+<canvas id="craft3d-canvas" aria-label="Gold scissors and comb in 3D, rotating as you scroll"></canvas>
+<div id="craft3d-fallback" role="img" aria-label="Gold scissors, still version for mobile">
+<div class="fb-scissors" aria-hidden="true">&#9986;</div>
+<p><b style="color:var(--gold2)">Gold scissors &amp; comb</b><br>The 3D version of this section appears on laptop and desktop screens. On this device you see the still version, so scrolling stays fast.</p>
+</div>
+</div>
+</div>
+</div></section>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true"><div class="lb-box" id="lbBox">
 <img id="lbImg" src="" alt="">
@@ -446,6 +476,123 @@ document.getElementById('bookForm').addEventListener('submit',function(e){
   var msg='Hello Valentino Salon, Serampore! I would like to request a booking.\nName: '+booking.name+'\nPhone: '+booking.phone+'\nService: '+booking.service+'\nDate: '+booking.date+'\nPreferred time: '+booking.time;
   window.open('https://wa.me/918697974717?text='+encodeURIComponent(msg),'_blank');
 });
+})();
+</script>
+<script>
+/* 1 Scroll-Driven 3D Canvas — DESKTOP ONLY.
+   Gate: pointer:fine AND min-width 1024px AND no reduced motion.
+   On mobile/tablet/reduced-motion the fallback stays visible and
+   Three.js is NEVER loaded, so mobile scrolling is unaffected. */
+(function(){
+  var stage=document.getElementById('craft3d-stage');
+  var canvas=document.getElementById('craft3d-canvas');
+  if(!stage||!canvas) return;
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isDesktop3D=window.matchMedia('(pointer:fine) and (min-width:1024px)').matches;
+  if(reduced||!isDesktop3D) return; /* fallback remains, no Three.js load */
+  var loader=document.createElement('script');
+  loader.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+  loader.onload=function(){ initCraft3D(); };
+  loader.onerror=function(){ /* keep static fallback if CDN fails */ };
+  document.head.appendChild(loader);
+
+  function initCraft3D(){
+    if(!window.THREE) return;
+    stage.classList.add('craft3d-live');
+    var THREE=window.THREE;
+    var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));
+    var scene=new THREE.Scene();
+    var camera=new THREE.PerspectiveCamera(42,1,0.1,100);
+    camera.position.set(0,0.6,7.5);
+    scene.add(new THREE.AmbientLight(0xffffff,0.65));
+    var key=new THREE.DirectionalLight(0xffffff,0.9); key.position.set(4,6,6); scene.add(key);
+    var gold=new THREE.PointLight(0xe8cf8a,1.1,20); gold.position.set(-4,-2,4); scene.add(gold);
+
+    var goldMat=new THREE.MeshStandardMaterial({color:0xc9a24b,metalness:0.9,roughness:0.28});
+    var brightMat=new THREE.MeshStandardMaterial({color:0xe8cf8a,metalness:0.95,roughness:0.18});
+    var darkMat=new THREE.MeshStandardMaterial({color:0x8a6a26,metalness:0.85,roughness:0.35});
+
+    /* Stylised gold scissors + comb, built only from code primitives.
+       No external GLTF, no downloaded model. */
+    var group=new THREE.Group(); scene.add(group);
+    var parts=[]; /* {mesh, base:Vector3, dir:Vector3} for exploded view */
+    function add(mesh,dir){
+      mesh.position.copy(mesh.userData.base);
+      parts.push({mesh:mesh,base:mesh.userData.base.clone(),dir:dir});
+      group.add(mesh); return mesh;
+    }
+    function box(w,h,d,mat,x,y,z){
+      var m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);
+      m.userData.base=new THREE.Vector3(x,y,z); m.position.set(x,y,z); return m;
+    }
+    /* Scissors: two blades crossing at a pivot, two ring handles. */
+    var pivot=new THREE.Mesh(new THREE.SphereGeometry(0.22,24,24),brightMat);
+    pivot.userData.base=new THREE.Vector3(0,0,0); pivot.position.set(0,0,0);
+    group.add(pivot);
+    var blade1=box(0.16,2.4,0.05,goldMat,-0.35,1.15,0);
+    blade1.rotation.z=0.28; add(blade1,new THREE.Vector3(-0.7,0.6,0));
+    var blade2=box(0.16,2.4,0.05,brightMat,0.35,1.15,0);
+    blade2.rotation.z=-0.28; add(blade2,new THREE.Vector3(0.7,0.6,0));
+    var handle1=new THREE.Mesh(new THREE.CylinderGeometry(0.09,0.09,1.5,16),darkMat);
+    handle1.userData.base=new THREE.Vector3(-0.55,-0.95,0); handle1.position.set(-0.55,-0.95,0); handle1.rotation.z=0.28;
+    add(handle1,new THREE.Vector3(-0.8,-0.5,0));
+    var handle2=new THREE.Mesh(new THREE.CylinderGeometry(0.09,0.09,1.5,16),darkMat);
+    handle2.userData.base=new THREE.Vector3(0.55,-0.95,0); handle2.position.set(0.55,-0.95,0); handle2.rotation.z=-0.28;
+    add(handle2,new THREE.Vector3(0.8,-0.5,0));
+    var ring1=new THREE.Mesh(new THREE.TorusGeometry(0.38,0.09,16,32),goldMat);
+    ring1.userData.base=new THREE.Vector3(-0.95,-1.85,0); ring1.position.set(-0.95,-1.85,0);
+    add(ring1,new THREE.Vector3(-1,0,0));
+    var ring2=new THREE.Mesh(new THREE.TorusGeometry(0.38,0.09,16,32),goldMat);
+    ring2.userData.base=new THREE.Vector3(0.95,-1.85,0); ring2.position.set(0.95,-1.85,0);
+    add(ring2,new THREE.Vector3(1,0,0));
+    /* Comb: spine + teeth, standing to the right of the scissors. */
+    var comb=new THREE.Group(); comb.position.set(2.3,0.4,0); group.add(comb);
+    var spine=new THREE.Mesh(new THREE.BoxGeometry(0.28,2.6,0.12),brightMat);
+    comb.add(spine);
+    for(var i=0;i<9;i++){
+      var tooth=new THREE.Mesh(new THREE.BoxGeometry(0.5,0.09,0.1),goldMat);
+      tooth.position.set(-0.32,-1.1+i*0.28,0); comb.add(tooth);
+    }
+    var combPart={mesh:comb,base:comb.position.clone(),dir:new THREE.Vector3(1,0.3,0)};
+    parts.push(combPart);
+
+    var state={progress:0};
+    function render(){
+      var p=state.progress;
+      /* Scroll drives rotation; exploded view peaks mid-scroll, then reassembles. */
+      group.rotation.y=p*Math.PI*1.5;
+      group.rotation.x=0.15+Math.sin(p*Math.PI)*0.15;
+      var explode=Math.sin(p*Math.PI)*0.9;
+      parts.forEach(function(pt){
+        pt.mesh.position.set(
+          pt.base.x+pt.dir.x*explode,
+          pt.base.y+pt.dir.y*explode,
+          pt.base.z+pt.dir.z*explode
+        );
+      });
+      renderer.render(scene,camera);
+    }
+    function size(){
+      var w=stage.clientWidth||640, h=420;
+      renderer.setSize(w,h,false);
+      camera.aspect=w/h; camera.updateProjectionMatrix();
+    }
+    size(); window.addEventListener('resize',function(){size();render();});
+    /* Scroll scrub: GSAP ScrollTrigger if present, else plain scroll listener. */
+    if(window.gsap&&window.ScrollTrigger){
+      window.gsap.to(state,{progress:1,ease:'none',
+        scrollTrigger:{trigger:'#craft3d',start:'top bottom',end:'bottom top',scrub:true,onUpdate:render},
+        onUpdate:render});
+    }else{
+      window.addEventListener('scroll',function(){
+        var r=stage.getBoundingClientRect(), vh=window.innerHeight||800;
+        var p=1-(r.top+r.height/2)/ (vh+r.height);
+        state.progress=Math.max(0,Math.min(1,p)); render();
+      },{passive:true});
+    }
+    render();
+  }
 })();
 </script>
 </body>
