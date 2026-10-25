@@ -106,6 +106,22 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mut);font-siz
 footer a{color:var(--gold2)}
 .wa{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:var(--wa);color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;text-decoration:none;z-index:90;box-shadow:0 10px 30px rgba(0,0,0,.5)}
 .reveal{opacity:0;transform:translateY(24px)}
+.card{transition:transform .25s ease,box-shadow .25s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.35)}
+.price{font-size:20px;font-weight:700;color:var(--gold2);display:block;margin-top:10px}
+.price-note{background:#171410;border:1px solid var(--gold);border-radius:12px;padding:14px 18px;color:var(--ink);font-weight:600}
+.hero-photo{margin-top:36px;border:1px solid var(--line);border-radius:20px;overflow:hidden;position:relative}
+.hero-photo img{width:100%;height:360px;object-fit:cover;display:block}
+@media(max-width:640px){.hero-photo img{height:240px}}
+.hero-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px 22px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.75));font-family:"Cormorant Garamond",serif;font-size:28px}
+.hero-photo figcaption small{display:block;font-family:Inter,sans-serif;font-size:13px;color:var(--mut);letter-spacing:.12em;text-transform:uppercase}
+.tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+.tile:hover img{transform:scale(1.04)}
+.tile span{background:linear-gradient(180deg,transparent,rgba(0,0,0,.7));padding:18px 16px 14px;left:0;right:0;bottom:0}
+.mapwrap{margin-top:20px;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.mapwrap iframe{width:100%;height:340px;border:0;display:block}
+@media(max-width:640px){.mapwrap iframe{height:280px}}
+.lb-box img{width:100%;max-height:60vh;object-fit:contain;border-radius:12px;display:block;margin:0 auto 14px}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}*{scroll-behavior:auto!important}}
 </style>
 </head>
@@ -120,49 +136,51 @@ footer a{color:var(--gold2)}
 
 <main>
 <section class="hero"><div class="wrap">
-<p class="eyebrow reveal">Head Turners &middot; Mahesh, Serampore</p>
-<h1 class="reveal">Good hair, calm skin,<br><em>done beautifully.</em></h1>
-<p class="lede reveal">Valentino Salon in Serampore — hair, skin, makeup and wellness, in a calm, premium space on G.T. Road.</p>
-<p class="reveal" style="background:var(--card);border:1px solid var(--gold);border-radius:14px;padding:14px 18px;max-width:680px"><b style="color:var(--gold2)">Valentino Salon, Serampore</b><br>241, G.T. Road, Opp. New Kolkata, Mahesh, Serampore 712202 &middot; Open 10 AM&ndash;8 PM &middot; Call / WhatsApp: 86979 74717<br><small style="color:var(--mut)">This is the Serampore salon on G.T. Road, Mahesh — not a Mumbai or Ballygunge branch.</small></p>
-<p class="reveal"><a class="btn" href="#book">Book on WhatsApp</a></p>
-<div class="hero-art reveal" aria-label="Salon interior, illustrated"><span>Valentino Salon<small>241, G.T. Road &middot; Opp. New Kolkata / Triveni Mall</small></span></div>
+<p class="eyebrow reveal hero-el">Head Turners &middot; Mahesh, Serampore</p>
+<h1 class="reveal hero-el">Good hair, calm skin,<br><em>done beautifully.</em></h1>
+<p class="lede reveal hero-el">Valentino Salon in Serampore — hair, skin, makeup and wellness, in a calm, premium space on G.T. Road.</p>
+<p class="reveal hero-el" style="background:var(--card);border:1px solid var(--gold);border-radius:14px;padding:14px 18px;max-width:680px"><b style="color:var(--gold2)">Valentino Salon, Serampore</b><br>241, G.T. Road, Opp. New Kolkata, Mahesh, Serampore 712202 &middot; Open 10 AM&ndash;8 PM &middot; Call / WhatsApp: 86979 74717<br><small style="color:var(--mut)">This is the Serampore salon on G.T. Road, Mahesh — not a Mumbai or Ballygunge branch.</small></p>
+<p class="reveal hero-el"><a class="btn" href="#book">Book on WhatsApp</a></p>
+<figure class="hero-photo reveal hero-el"><img src="photos/hero-interior.jpg" alt="Valentino Salon interior in Serampore, with illuminated mirrors and styling chairs" loading="eager"><figcaption>Valentino Salon<small>241, G.T. Road &middot; Opp. New Kolkata / Triveni Mall</small></figcaption></figure>
 </div></section>
 
 <div class="wrap strip reveal"><span><b>Open daily</b> &middot; 10 AM &ndash; 8 PM</span><span><b>WhatsApp booking</b> &middot; 86979 74717</span><span><b>Also on WhatsApp</b> &middot; 91636 68888</span><span><b>Instagram</b> &middot; @valentinosalon.in</span></div>
 
 <section id="services"><div class="wrap">
 <div class="rule reveal"></div><h2 class="reveal">Services</h2>
-<p class="sub reveal">Ask on WhatsApp for current availability. No prices are listed here — please confirm on WhatsApp before your visit.</p>
+<p class="sub reveal">Prices below are indicative starting prices (see the note above) — please confirm on WhatsApp before your visit. Categories without a price are marked “Ask on WhatsApp”.</p>
+<p class="price-note reveal">Indicative starting prices based on typical Kolkata salon rates; final pricing to be confirmed by the salon. These are not salon-confirmed prices — please confirm on WhatsApp before your visit.</p>
 <div class="grid">
-<article class="card reveal"><span class="chip">Hair</span><h3>Haircut &amp; Styling</h3><p>Everyday cuts and styled finishes, shaped around your hair and routine.</p></article>
-<article class="card reveal"><span class="chip">Hair</span><h3>Colour &amp; Highlights</h3><p>Colour, balayage and highlights for a fresh, natural-looking change.</p></article>
-<article class="card reveal"><span class="chip">Hair</span><h3>Keratin &amp; Smoothening</h3><p>Smoother, easier-to-manage hair treatments for frizz and texture.</p></article>
-<article class="card reveal"><span class="chip">Skin</span><h3>Facials &amp; Skin Care</h3><p>Facials and skin care for a cleaner, fresher glow.</p></article>
-<article class="card reveal"><span class="chip">Makeup</span><h3>Makeup</h3><p>Makeup for occasions, events and celebrations.</p></article>
-<article class="card reveal"><span class="chip">Spa</span><h3>Spa</h3><p>Spa and relaxation services — ask on WhatsApp what is available on your date.</p></article>
-<article class="card reveal"><span class="chip">Mehendi</span><h3>Mehendi</h3><p>Mehendi for occasions and celebrations — ask on WhatsApp for designs and availability.</p></article>
-<article class="card reveal"><span class="chip">Nails</span><h3>Nail Art</h3><p>Nail art and nail care, in styles you can discuss before your visit.</p></article>
-<article class="card reveal"><span class="chip">Nails</span><h3>Pedicure &amp; Manicure</h3><p>Pedicure and manicure care for hands and feet.</p></article>
-<article class="card reveal"><span class="chip">Skin</span><h3>Skin &amp; Face Care</h3><p>Face and skin care, including facials — confirm the right option on WhatsApp first.</p></article>
-<article class="card reveal"><span class="chip">Wellness</span><h3>Wellness &amp; Grooming</h3><p>Complete grooming and wellness services in one visit.</p></article>
+<article class="card reveal"><span class="chip">Hair</span><h3>Haircut — Men</h3><p>Everyday cuts and styled finishes.</p><span class="price">from ₹199</span></article>
+<article class="card reveal"><span class="chip">Hair</span><h3>Haircut — Women</h3><p>Cuts and styling, shaped around your hair and routine.</p><span class="price">from ₹499</span></article>
+<article class="card reveal"><span class="chip">Hair</span><h3>Hair Spa</h3><p>Spa care for hair and scalp.</p><span class="price">from ₹799</span></article>
+<article class="card reveal"><span class="chip">Hair</span><h3>Global Hair Colour</h3><p>Full-head colour for a fresh, natural-looking change.</p><span class="price">from ₹1,999</span></article>
+<article class="card reveal"><span class="chip">Hair</span><h3>Keratin Treatment</h3><p>Smoother, easier-to-manage hair for frizz and texture.</p><span class="price">from ₹2,999</span></article>
+<article class="card reveal"><span class="chip">Skin</span><h3>Facial / Cleanup</h3><p>Facials and cleanup for a cleaner, fresher glow.</p><span class="price">from ₹499</span></article>
+<article class="card reveal"><span class="chip">Nails</span><h3>Manicure / Pedicure</h3><p>Care for hands and feet.</p><span class="price">from ₹599</span></article>
+<article class="card reveal"><span class="chip">Makeup</span><h3>Bridal Package</h3><p>Bridal makeup and occasion styling — confirm details on WhatsApp.</p><span class="price">from ₹9,999</span></article>
+<article class="card reveal"><span class="chip">Hair</span><h3>Beard Grooming</h3><p>Beard shaping and grooming.</p><span class="price">from ₹149</span></article>
+<article class="card reveal"><span class="chip">Spa</span><h3>Spa</h3><p>Spa and relaxation services — ask on WhatsApp what is available on your date.</p><span class="price">Ask on WhatsApp</span></article>
+<article class="card reveal"><span class="chip">Mehendi</span><h3>Mehendi</h3><p>Mehendi for occasions and celebrations — ask on WhatsApp for designs and availability.</p><span class="price">Ask on WhatsApp</span></article>
+<article class="card reveal"><span class="chip">Nails</span><h3>Nail Art</h3><p>Nail art and nail care, in styles you can discuss before your visit.</p><span class="price">Ask on WhatsApp</span></article>
+<article class="card reveal"><span class="chip">Skin</span><h3>Skin &amp; Face Care</h3><p>Face and skin care — confirm the right option on WhatsApp first.</p><span class="price">Ask on WhatsApp</span></article>
 </div></div></section>
 
 <section id="gallery"><div class="wrap">
 <div class="rule reveal"></div><h2 class="reveal">Inside the salon</h2>
-<p class="sub reveal">Illustrated gallery — tap a tile to view it larger. Swipe left or right in the viewer on mobile.</p>
+<p class="sub reveal">Real photos from the salon — tap a photo to view it larger. Swipe left or right in the viewer on mobile. Gallery photos are the salon’s own photos from the earlier demo; no stock photos are used.</p>
 <div class="pills" role="group" aria-label="Gallery filters">
-<button class="pill active" data-filter="all">All</button><button class="pill" data-filter="hair">Hair</button><button class="pill" data-filter="skin">Skin</button><button class="pill" data-filter="place">The Place</button>
+<button class="pill active" data-filter="all">All</button><button class="pill" data-filter="hair">Hair</button>
 </div>
 <div class="gal" id="gal">
-<button class="tile t1" data-cat="place" data-title="The salon floor" data-text="A calm, premium space on G.T. Road, Mahesh."><i>V</i><span>Salon Floor<small>The Place</small></span></button>
-<button class="tile t2" data-cat="hair" data-title="Cut &amp; finish" data-text="Clean cuts, finished with care."><i>&#9986;</i><span>Cut &amp; Finish<small>Hair</small></span></button>
-<button class="tile t3" data-cat="skin" data-title="Skin &amp; glow" data-text="Facials and skin care in a relaxed setting."><i>&#10022;</i><span>Skin &amp; Glow<small>Skin</small></span></button>
-<button class="tile t4" data-cat="hair" data-title="Colour studio" data-text="Colour and highlights, blended to suit you."><i>&#9679;</i><span>Colour Studio<small>Hair</small></span></button>
-<button class="tile t5" data-cat="place" data-title="The chair" data-text="Take a seat — the rest is taken care of."><i>&#9786;</i><span>The Chair<small>The Place</small></span></button>
-<button class="tile t6" data-cat="skin" data-title="Makeup &amp; occasion" data-text="Occasion makeup, ready for the day ahead."><i>&#10022;</i><span>Occasion Ready<small>Skin</small></span></button>
+<button class="tile" data-cat="hair" data-title="Signature Curls" data-text="Signature red curls styled at Valentino Salon." data-img="photos/gallery-signature-curls.jpg"><img src="photos/gallery-signature-curls.jpg" alt="Signature red curls styled at Valentino Salon"><span>Signature Curls<small>Hair</small></span></button>
+<button class="tile" data-cat="hair" data-title="Red Ombre" data-text="Long hair styled with a red ombre finish." data-img="photos/gallery-red-ombre.jpg"><img src="photos/gallery-red-ombre.jpg" alt="Long hair styled with a red ombre finish"><span>Red Ombre<small>Hair</small></span></button>
+<button class="tile" data-cat="hair" data-title="Glossy Layers" data-text="Long glossy layered hair styled at Valentino Salon." data-img="photos/gallery-glossy-layers.jpg"><img src="photos/gallery-glossy-layers.jpg" alt="Long glossy layered hair styled at Valentino Salon"><span>Glossy Layers<small>Hair</small></span></button>
+<button class="tile" data-cat="hair" data-title="Soft Curls" data-text="Long hair styled in soft curls." data-img="photos/gallery-soft-curls.jpg"><img src="photos/gallery-soft-curls.jpg" alt="Long hair styled in soft curls"><span>Soft Curls<small>Hair</small></span></button>
 </div></div></section>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true"><div class="lb-box" id="lbBox">
+<img id="lbImg" src="" alt="">
 <h3 id="lbTitle"></h3><p id="lbText"></p>
 <button id="lbPrev" type="button">&larr; Previous</button><button id="lbNext" type="button">Next &rarr;</button><br><button id="lbClose" type="button">Close</button>
 </div></div>
@@ -192,13 +210,13 @@ footer a{color:var(--gold2)}
 <form id="bookForm">
 <div><label for="bName">Your name</label><input id="bName" required placeholder="Your name"></div>
 <div><label for="bPhone">Your phone</label><input id="bPhone" required inputmode="tel" placeholder="10-digit phone"></div>
-<div><label for="bService">Service</label><select id="bService"><option>Haircut</option><option>Hair Colour</option><option>Keratin / Smoothening</option><option>Facial / Skin Care</option><option>Makeup</option><option>Spa</option><option>Mehendi</option><option>Nail Art</option><option>Pedicure / Manicure</option><option>Other</option></select></div>
+<div><label for="bService">Service</label><select id="bService"><option>Haircut — Men</option><option>Haircut — Women</option><option>Hair Spa</option><option>Global Hair Colour</option><option>Keratin Treatment</option><option>Facial / Cleanup</option><option>Manicure / Pedicure</option><option>Bridal Package</option><option>Beard Grooming</option><option>Spa</option><option>Mehendi</option><option>Nail Art</option><option>Skin &amp; Face Care</option><option>Other</option></select></div>
 <div><label for="bDate">Date</label><input id="bDate" type="date" required></div>
 <div class="full"><label for="bTime">Preferred time (free-form, within 10 AM – 8 PM)</label><input id="bTime" required placeholder="e.g. 4:30 PM, or anytime after 5 PM"></div>
 <div class="full"><span style="font-size:13px;font-weight:600;color:var(--mut)">How should this booking be sent?</span>
 <div class="choice" style="margin-top:8px">
-<label><input type="radio" name="sendMode" value="whatsapp" checked><span>WhatsApp-e pathao<small>Opens WhatsApp to 86979 74717 with your request ready to send.</small></span></label>
-<label><input type="radio" name="sendMode" value="dashboard"><span>Dashboard-e joma dao (demo)<small>Saved only in this browser (demo) and shown in the Demo Booking Dashboard below.</small></span></label>
+<label><input type="radio" name="sendMode" value="whatsapp" checked><span>Send via WhatsApp<small>Opens WhatsApp to 86979 74717 with your request ready to send.</small></span></label>
+<label><input type="radio" name="sendMode" value="dashboard"><span>Save to Demo Dashboard<small>Saved only in this browser (demo) and shown in the Demo Booking Dashboard below.</small></span></label>
 </div></div>
 <div class="full"><button class="btn" id="submitBtn" type="submit">Request Booking on WhatsApp</button>
 <p class="note" id="sendNote">This opens WhatsApp to 86979 74717. Nothing is booked until the salon confirms on WhatsApp.</p></div>
@@ -206,8 +224,8 @@ footer a{color:var(--gold2)}
 <div class="dash" id="dashboard">
 <span class="demolabel">DEMO</span>
 <h3>Demo Booking Dashboard</h3>
-<p class="note">Eta sudhu demo — asol booking software-e (Google Sheet / Fresha / Calendly) details evabei joma hobe, salon-er account-e dekhte pabe. This table is NOT a real Google Sheet or real software backend — it only stores bookings submitted in this browser demo, in this browser's localStorage, and starts empty.</p>
-<p class="note" id="dashEmpty">No demo bookings yet — submit the form above with “Dashboard-e joma dao (demo)” to see one here.</p>
+<p class="note">This is a demo only — in real booking software (Google Sheet / Fresha / Calendly) details would be saved in the same way, visible in the salon’s account. This table is NOT a real Google Sheet or real software backend — it only stores bookings submitted in this browser demo, in this browser’s localStorage, and starts empty.</p>
+<p class="note" id="dashEmpty">No demo bookings yet — submit the form above with “Save to Demo Dashboard” to see one here.</p>
 <div class="dashwrap"><table aria-label="Demo booking dashboard">
 <thead><tr><th>Name</th><th>Phone</th><th>Service</th><th>Date</th><th>Preferred time</th></tr></thead>
 <tbody id="dashBody"></tbody>
@@ -219,6 +237,7 @@ footer a{color:var(--gold2)}
 <div class="banner reveal"><h2>Visit us</h2>
 <p>241, G.T. Road, Opp. New Kolkata / Triveni Mall, Mahesh,<br>Serampore, West Bengal 712202 &middot; Open daily, 10 AM – 8 PM<br>Call / WhatsApp: 86979 74717 &middot; 91636 68888 &middot; Instagram: @valentinosalon.in</p>
 <p><a class="btn" href="#book">Request Booking on WhatsApp</a></p>
+<div class="mapwrap"><iframe title="Valentino Salon, Serampore on Google Maps" src="https://www.google.com/maps?q=241%2C%20G.T.%20Road%2C%20Mahesh%2C%20Serampore%2C%20West%20Bengal%20712202&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
 <div class="contactrow">
 <a class="btn ghost" href="tel:+918697974717">Call 86979 74717</a>
 <a class="btn ghost" href="https://instagram.com/valentinosalon.in" target="_blank" rel="noopener">Instagram @valentinosalon.in</a>
@@ -227,7 +246,7 @@ footer a{color:var(--gold2)}
 </div></section>
 </main>
 
-<footer><div class="wrap">Valentino Salon, Serampore - 241, G.T. Road, Opp. New Kolkata, Mahesh, Serampore 712202, 10 AM-8 PM, 86979 74717<br>Valentino Salon (Head Turners), Serampore &middot; Also on WhatsApp: 91636 68888 &middot; Instagram: @valentinosalon.in<br>Prices and availability: please confirm on WhatsApp before visiting.</div></footer>
+<footer><div class="wrap">Valentino Salon, Serampore - 241, G.T. Road, Opp. New Kolkata, Mahesh, Serampore 712202, 10 AM-8 PM, 86979 74717<br>Valentino Salon (Head Turners), Serampore &middot; Also on WhatsApp: 91636 68888 &middot; Instagram: @valentinosalon.in<br>Prices shown are indicative starting prices only; final pricing and availability: please confirm on WhatsApp before visiting. Open 10 AM – 8 PM daily.</div></footer>
 <a class="wa" href="https://wa.me/918697974717" aria-label="Chat on WhatsApp">&#9990;</a>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -247,7 +266,8 @@ var spy=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isInte
 if(!reduced && window.gsap && window.ScrollTrigger){
   gsap.registerPlugin(ScrollTrigger);
   if(window.Lenis){var lenis=new Lenis({smoothWheel:true});function raf(t){lenis.raf(t);requestAnimationFrame(raf)}requestAnimationFrame(raf)}
-  gsap.utils.toArray('.reveal').forEach(function(el){
+  gsap.to('.hero-el',{opacity:1,y:0,duration:.7,stagger:.12,ease:'power2.out'});
+  gsap.utils.toArray('.reveal:not(.hero-el)').forEach(function(el){
     gsap.to(el,{opacity:1,y:0,duration:.7,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%'}});
   });
 }else{document.querySelectorAll('.reveal').forEach(function(el){el.style.opacity=1;el.style.transform='none'})}
@@ -259,7 +279,7 @@ pills.forEach(function(p){p.addEventListener('click',function(){
   visible=tiles.filter(function(t){return !t.classList.contains('hidden')});
 })});
 var visible=tiles.slice(),idx=0,lb=document.getElementById('lb');
-function show(i){if(!visible.length)return;idx=(i+visible.length)%visible.length;var t=visible[idx];document.getElementById('lbTitle').innerHTML=t.dataset.title;document.getElementById('lbText').textContent=t.dataset.text;lb.classList.add('open')}
+function show(i){if(!visible.length)return;idx=(i+visible.length)%visible.length;var t=visible[idx];var im=document.getElementById('lbImg');if(t.dataset.img){im.src=t.dataset.img;im.alt=t.dataset.title;im.style.display='block'}else{im.style.display='none'}document.getElementById('lbTitle').innerHTML=t.dataset.title;document.getElementById('lbText').textContent=t.dataset.text;lb.classList.add('open')}
 tiles.forEach(function(t){t.addEventListener('click',function(){visible=tiles.filter(function(x){return !x.classList.contains('hidden')});show(visible.indexOf(t))})});
 document.getElementById('lbNext').addEventListener('click',function(){show(idx+1)});
 document.getElementById('lbPrev').addEventListener('click',function(){show(idx-1)});
